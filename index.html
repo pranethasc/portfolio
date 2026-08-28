@@ -212,6 +212,59 @@
       animation: shimmerHeader 8s linear infinite;
     }
 
+    /* 3D GLOBE ACHIEVEMENTS SYSTEM */
+    .globe-stage-wrapper {
+      position: relative;
+      width: 100%;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .globe-canvas-container {
+      position: relative;
+      width: 100%;
+      max-width: 660px;
+      height: 440px;
+      margin: 0 auto;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+    }
+    .globe-canvas-container:active {
+      cursor: grabbing;
+    }
+    .globe-orbital-node {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center center;
+      will-change: transform, opacity, z-index;
+      cursor: pointer;
+      user-select: none;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .globe-orbital-node.active-node {
+      border-color: rgba(232,168,48,0.9) !important;
+      box-shadow: 0 0 25px rgba(232,168,48,0.5), 0 0 45px rgba(20,184,166,0.3) !important;
+    }
+    .globe-hud-card {
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(232, 168, 48, 0.25);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 30px -5px rgba(20, 184, 166, 0.15);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .milestone-pill-btn {
+      transition: all 0.2s ease;
+    }
+    .milestone-pill-btn.active-pill {
+      background: rgba(232,168,48,0.18);
+      border-color: rgba(232,168,48,0.6);
+      color: #f0c060;
+    }
+
     ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:#020817; } ::-webkit-scrollbar-thumb { background:#162952; border-radius:3px; } ::-webkit-scrollbar-thumb:hover { background:#e8a830; }
   </style>
 </head>
@@ -369,12 +422,101 @@
       <div class="ambient-glow-teal w-[360px] h-[360px] bottom-10 -left-24"></div>
 
       <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
-        <div class="mb-12" data-aos="fade-up">
-          <div class="section-pill mb-4">Honors &amp; Milestones</div>
-          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white">Key <span class="shimmer-text">Achievements</span></h2>
-          <p class="text-slate-500 mt-2 max-w-xl">A record of consistent academic excellence, competitive merit, and professional credentials.</p>
+        <div class="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6" data-aos="fade-up">
+          <div>
+            <div class="section-pill mb-4">Honors &amp; Milestones</div>
+            <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white">Key <span class="shimmer-text">Achievements</span></h2>
+            <p class="text-slate-400 mt-2 max-w-xl text-sm leading-relaxed">Explore academic milestones and credentials projected on an interactive 3D sphere.</p>
+          </div>
+          <!-- View Switcher Toggle -->
+          <div class="flex items-center gap-1.5 p-1 bg-[#0a1628] border border-white/10 rounded-xl self-start md:self-auto shadow-lg">
+            <button id="btn-view-globe" onclick="setAchievementView('globe')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gradient-to-r from-yellow-500/20 to-teal-400/20 text-yellow-400 border border-yellow-500/30 shadow">
+              <i data-lucide="globe" class="w-3.5 h-3.5 text-teal-400"></i> 3D Globe
+            </button>
+            <button id="btn-view-grid" onclick="setAchievementView('grid')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all text-slate-400 hover:text-white border border-transparent">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Grid View
+            </button>
+          </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- 3D GLOBE VIEW CONTAINER -->
+        <div id="achievements-globe-wrapper" class="w-full">
+          <div class="dossier-card rounded-2xl p-6 sm:p-10 border border-yellow-500/20 relative overflow-hidden bg-[#0a1628]/80 backdrop-blur-xl">
+            <!-- Globe Controls Header -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-2 pb-4 border-b border-white/5 font-mono text-[11px] text-slate-400">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                <span class="text-slate-300">Interactive 3D Sphere</span>
+                <span class="text-slate-600">|</span>
+                <span class="text-yellow-400/80">Drag / Swipe to Rotate</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="toggleGlobeAutoRotate()" id="btn-auto-rotate" class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-300 transition text-[10px]">
+                  <i data-lucide="play-circle" class="w-3 h-3 text-teal-400"></i>
+                  <span>Auto-Spin: <strong class="text-teal-400" id="auto-spin-status">ON</strong></span>
+                </button>
+                <button onclick="resetGlobeOrientation()" class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-300 transition text-[10px]">
+                  <i data-lucide="rotate-ccw" class="w-3 h-3 text-yellow-400"></i> Reset
+                </button>
+              </div>
+            </div>
+
+            <!-- 3D Stage -->
+            <div class="relative w-full min-h-[460px] flex items-center justify-center overflow-hidden my-4" id="globe-interactive-stage">
+              <!-- Canvas for Cyber Wireframe Globe -->
+              <canvas id="achievements-globe-canvas" class="cursor-grab active:cursor-grabbing max-w-full" width="640" height="460"></canvas>
+              
+              <!-- Orbital Nodes Overlay Container -->
+              <div id="globe-nodes-layer" class="absolute inset-0 pointer-events-none">
+                <!-- Injected via JavaScript with 3D projection math -->
+              </div>
+            </div>
+
+            <!-- Active Selected Achievement HUD Card -->
+            <div id="globe-active-hud" class="globe-hud-card rounded-xl p-5 sm:p-6 mt-4 border border-yellow-500/30">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-start gap-4">
+                  <div id="hud-icon-container" class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 shrink-0">
+                    <i data-lucide="award" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <span id="hud-category" class="font-mono text-[10px] uppercase tracking-widest text-yellow-400/80 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/20">College Merit</span>
+                      <span id="hud-badge-value" class="font-mono text-[10px] uppercase tracking-wider text-teal-400 bg-teal-400/10 px-2 py-0.5 rounded border border-teal-400/20">Merit Scholar</span>
+                    </div>
+                    <h3 id="hud-title" class="font-heading font-bold text-lg sm:text-xl text-white">Mahatma Gandhi Merit Scholarship</h3>
+                    <p id="hud-desc" class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">Awarded in college at KCLAS for demonstrated academic distinction, discipline, and exemplary scholastic performance.</p>
+                  </div>
+                </div>
+                <!-- Action Buttons -->
+                <div class="flex sm:flex-col items-center sm:items-end gap-2 shrink-0 pt-3 sm:pt-0 border-t sm:border-t-0 border-white/5">
+                  <a href="#" id="hud-verify-btn" target="_blank" data-credential-id="mg-merit-scholarship" data-title="Mahatma Gandhi Merit Scholarship" onclick="handleCredentialClick(event,this)" class="btn-primary text-xs px-3.5 py-2 w-full sm:w-auto text-center justify-center">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    <span class="cred-label">Verify Credential</span>
+                  </a>
+                  <button id="hud-attach-btn" onclick="openLinkModal('mg-merit-scholarship','Mahatma Gandhi Merit Scholarship')" class="btn-outline text-xs px-3 py-1.5 w-full sm:w-auto text-center justify-center text-[11px]">
+                    <i data-lucide="link" class="w-3 h-3"></i> Attach Link
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Milestone Jump Pills -->
+            <div class="mt-6 pt-5 border-t border-white/5">
+              <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-2.5 flex items-center justify-between">
+                <span>Jump to Orbital Milestone:</span>
+                <span class="text-teal-400/60 font-mono text-[10px]">6 Milestones Connected</span>
+              </div>
+              <div class="flex flex-wrap gap-2" id="globe-quick-pills">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- GRID VIEW CONTAINER (Alternative classic view) -->
+        <div id="achievements-grid-wrapper" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 hidden">
 
           <div data-aos="fade-up" data-aos-delay="50" class="dossier-card rounded-2xl p-6 flex flex-col justify-between">
             <div><div class="flex items-center justify-between mb-4"><div class="w-10 h-10 rounded-lg bg-yellow-500/10 border border-yellow-500/15 flex items-center justify-center"><i data-lucide="award" class="w-5 h-5 text-yellow-400"></i></div><span class="font-mono text-[10px] text-yellow-400/60 uppercase tracking-widest">College Merit</span></div><h3 class="font-heading font-bold text-lg text-white mb-2">Mahatma Gandhi Merit Scholarship</h3><p class="text-sm text-slate-400 leading-relaxed">Awarded in college at KCLAS for demonstrated academic distinction, discipline, and exemplary scholastic performance.</p></div>
@@ -658,6 +800,463 @@
         scrollProgressBar.style.width = scrollPercent + '%';
       }
     }, { passive: true });
+
+    /* 3D GLOBE ACHIEVEMENTS SYSTEM */
+    const achievementsList = [
+      {
+        id: 'mg-merit-scholarship',
+        title: 'Mahatma Gandhi Merit Scholarship',
+        shortTitle: 'Merit Scholarship',
+        category: 'College Merit',
+        badge: 'Merit Scholar',
+        icon: 'award',
+        color: '#e8a830',
+        desc: 'Awarded in college at KCLAS for demonstrated academic distinction, discipline, and exemplary scholastic performance.',
+        lat: 15,
+        lon: 10
+      },
+      {
+        id: 'dept-rank-1',
+        title: 'Department Rank 1',
+        shortTitle: 'Dept Rank 1',
+        category: 'Academic Rank',
+        badge: '2 Consecutive Sems',
+        icon: 'crown',
+        color: '#14b8a6',
+        desc: 'Secured 1st Rank in the Department for two consecutive semesters in the B.Com program at KCLAS.',
+        lat: 38,
+        lon: 72
+      },
+      {
+        id: 'cma-foundation',
+        title: 'CMA Foundation (Distinction)',
+        shortTitle: 'CMA Distinction',
+        category: 'Professional Exam',
+        badge: 'Distinction',
+        icon: 'check-check',
+        color: '#e8a830',
+        desc: 'Cleared the CMA Foundation examination with Distinction, building strong analytical expertise in cost accounting and finance.',
+        lat: -25,
+        lon: 135
+      },
+      {
+        id: '12th-board',
+        title: '93.4% in 12th Board',
+        shortTitle: '93.4% 12th Board',
+        category: 'Higher Secondary',
+        badge: 'Commerce Distinction',
+        icon: 'trending-up',
+        color: '#14b8a6',
+        desc: 'Graduated with top academic standing and distinction in Commerce & Accounting subjects.',
+        lat: 40,
+        lon: 195
+      },
+      {
+        id: '10th-board',
+        title: '92% in 10th Board',
+        shortTitle: '92% 10th Board',
+        category: 'Secondary School',
+        badge: 'Foundational Merit',
+        icon: 'star',
+        color: '#e8a830',
+        desc: 'Consistent scholastic performance across all quantitative, analytical, and foundational subjects.',
+        lat: -35,
+        lon: 255
+      },
+      {
+        id: 'protosem-trainee',
+        title: 'PRICE Protosem Trainee',
+        shortTitle: 'Protosem Trainee',
+        category: 'Industry Innovation',
+        badge: 'Innovation Trainee',
+        icon: 'rocket',
+        color: '#14b8a6',
+        desc: 'Selected as an Innovation Professional Trainee undergoing a comprehensive 21-week industry immersion program.',
+        lat: 5,
+        lon: 315
+      }
+    ];
+
+    let currentActiveMilestoneIndex = 0;
+    let globeAutoSpin = true;
+    let globeCurrentView = 'globe';
+
+    function setAchievementView(view) {
+      globeCurrentView = view;
+      const globeWrap = document.getElementById('achievements-globe-wrapper');
+      const gridWrap = document.getElementById('achievements-grid-wrapper');
+      const btnGlobe = document.getElementById('btn-view-globe');
+      const btnGrid = document.getElementById('btn-view-grid');
+
+      if (view === 'globe') {
+        globeWrap.classList.remove('hidden');
+        gridWrap.classList.add('hidden');
+        btnGlobe.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gradient-to-r from-yellow-500/20 to-teal-400/20 text-yellow-400 border border-yellow-500/30 shadow';
+        btnGrid.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all text-slate-400 hover:text-white border border-transparent';
+      } else {
+        globeWrap.classList.add('hidden');
+        gridWrap.classList.remove('hidden');
+        btnGrid.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gradient-to-r from-yellow-500/20 to-teal-400/20 text-yellow-400 border border-yellow-500/30 shadow';
+        btnGlobe.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all text-slate-400 hover:text-white border border-transparent';
+      }
+    }
+
+    function toggleGlobeAutoRotate() {
+      globeAutoSpin = !globeAutoSpin;
+      const statusEl = document.getElementById('auto-spin-status');
+      if (statusEl) {
+        statusEl.textContent = globeAutoSpin ? 'ON' : 'OFF';
+        statusEl.className = globeAutoSpin ? 'text-teal-400 font-bold' : 'text-slate-500 font-bold';
+      }
+    }
+
+    function selectMilestone(index, smoothRotate = true) {
+      currentActiveMilestoneIndex = index;
+      const m = achievementsList[index];
+      if (!m) return;
+
+      const hudCategory = document.getElementById('hud-category');
+      const hudBadge = document.getElementById('hud-badge-value');
+      const hudTitle = document.getElementById('hud-title');
+      const hudDesc = document.getElementById('hud-desc');
+      const hudIcon = document.getElementById('hud-icon-container');
+      const verifyBtn = document.getElementById('hud-verify-btn');
+      const attachBtn = document.getElementById('hud-attach-btn');
+
+      if (hudCategory) hudCategory.textContent = m.category;
+      if (hudBadge) hudBadge.textContent = m.badge;
+      if (hudTitle) hudTitle.textContent = m.title;
+      if (hudDesc) hudDesc.textContent = m.desc;
+      if (hudIcon) {
+        hudIcon.innerHTML = `<i data-lucide="${m.icon}" class="w-6 h-6"></i>`;
+        hudIcon.style.color = m.color;
+        hudIcon.style.borderColor = m.color + '50';
+        hudIcon.style.backgroundColor = m.color + '15';
+        lucide.createIcons({ root: hudIcon });
+      }
+
+      if (verifyBtn) {
+        verifyBtn.setAttribute('data-credential-id', m.id);
+        verifyBtn.setAttribute('data-title', m.title);
+        const savedUrl = localStorage.getItem('cred_link_' + m.id);
+        if (savedUrl && savedUrl.trim()) {
+          verifyBtn.href = savedUrl;
+          const l = verifyBtn.querySelector('.cred-label');
+          if (l) l.textContent = 'View Link ↗';
+        } else {
+          verifyBtn.href = '#';
+          const l = verifyBtn.querySelector('.cred-label');
+          if (l) l.textContent = 'Verify Credential';
+        }
+      }
+
+      if (attachBtn) {
+        attachBtn.setAttribute('onclick', `openLinkModal('${m.id}','${m.title}')`);
+      }
+
+      document.querySelectorAll('.milestone-pill-btn').forEach((pill, idx) => {
+        if (idx === index) {
+          pill.classList.add('active-pill');
+          pill.style.borderColor = m.color + '80';
+        } else {
+          pill.classList.remove('active-pill');
+          pill.style.borderColor = '';
+        }
+      });
+
+      document.querySelectorAll('.globe-orbital-node').forEach((node, idx) => {
+        if (idx === index) {
+          node.classList.add('active-node');
+        } else {
+          node.classList.remove('active-node');
+        }
+      });
+
+      if (smoothRotate && window.setGlobeTargetCoords) {
+        window.setGlobeTargetCoords(m.lat, m.lon);
+      }
+    }
+
+    function init3DGlobe() {
+      const canvas = document.getElementById('achievements-globe-canvas');
+      const nodesLayer = document.getElementById('globe-nodes-layer');
+      const pillsContainer = document.getElementById('globe-quick-pills');
+      if (!canvas || !nodesLayer) return;
+
+      const ctx = canvas.getContext('2d');
+      let width = (canvas.width = canvas.parentElement.clientWidth || 640);
+      let height = (canvas.height = 460);
+
+      window.addEventListener('resize', () => {
+        if (!canvas.parentElement) return;
+        width = canvas.width = Math.min(canvas.parentElement.clientWidth, 660);
+        height = canvas.height = 460;
+      });
+
+      if (pillsContainer) {
+        pillsContainer.innerHTML = achievementsList.map((m, idx) => `
+          <button onclick="selectMilestone(${idx})" class="milestone-pill-btn px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-xs font-mono flex items-center gap-1.5 hover:border-yellow-500/40 text-slate-300 hover:text-white transition">
+            <i data-lucide="${m.icon}" class="w-3 h-3 text-${m.color === '#e8a830' ? 'yellow-400' : 'teal-400'}"></i>
+            <span>${m.shortTitle}</span>
+          </button>
+        `).join('');
+        lucide.createIcons({ root: pillsContainer });
+      }
+
+      nodesLayer.innerHTML = achievementsList.map((m, idx) => `
+        <div id="globe-node-${idx}" onclick="selectMilestone(${idx})" class="globe-orbital-node pointer-events-auto flex items-center gap-2.5 px-3 py-1.5 rounded-xl border border-white/15 bg-[#0a1628]/95 backdrop-blur-md shadow-xl text-left transition-transform duration-75">
+          <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style="background:${m.color}20; color:${m.color}; border:1px solid ${m.color}40;">
+            <i data-lucide="${m.icon}" class="w-3.5 h-3.5"></i>
+          </div>
+          <div>
+            <div class="font-mono text-[9px] uppercase tracking-wider text-slate-400 leading-none">${m.category}</div>
+            <div class="font-heading font-bold text-xs text-white leading-tight mt-0.5">${m.shortTitle}</div>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons({ root: nodesLayer });
+
+      const particleCount = 85;
+      const sphereParticles = [];
+      for (let i = 0; i < particleCount; i++) {
+        const phi = Math.acos(-1 + (2 * i) / particleCount);
+        const theta = Math.sqrt(particleCount * Math.PI) * phi;
+        sphereParticles.push({
+          x: Math.cos(theta) * Math.sin(phi),
+          y: Math.cos(phi),
+          z: Math.sin(theta) * Math.sin(phi),
+          size: Math.random() * 1.5 + 0.8,
+          alpha: Math.random() * 0.5 + 0.25
+        });
+      }
+
+      let rotX = 0.15;
+      let rotY = 0;
+      let targetRotX = 0.15;
+      let targetRotY = 0;
+      let isDragging = false;
+      let lastPointerX = 0;
+      let lastPointerY = 0;
+      let userInteracting = false;
+      let interactionTimeout = null;
+
+      window.setGlobeTargetCoords = function(latDeg, lonDeg) {
+        const latRad = (latDeg * Math.PI) / 180;
+        const lonRad = (lonDeg * Math.PI) / 180;
+        targetRotX = -latRad;
+        targetRotY = -lonRad - Math.PI / 2;
+        userInteracting = true;
+        clearTimeout(interactionTimeout);
+        interactionTimeout = setTimeout(() => { userInteracting = false; }, 4000);
+      };
+
+      window.resetGlobeOrientation = function() {
+        targetRotX = 0.15;
+        targetRotY = 0;
+        selectMilestone(0, false);
+      };
+
+      canvas.addEventListener('pointerdown', e => {
+        isDragging = true;
+        userInteracting = true;
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
+        canvas.setPointerCapture(e.pointerId);
+      });
+
+      canvas.addEventListener('pointermove', e => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastPointerX;
+        const dy = e.clientY - lastPointerY;
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
+
+        targetRotY += dx * 0.007;
+        targetRotX += dy * 0.007;
+        targetRotX = Math.max(-1.1, Math.min(1.1, targetRotX));
+      });
+
+      const stopDrag = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        clearTimeout(interactionTimeout);
+        interactionTimeout = setTimeout(() => { userInteracting = false; }, 3500);
+      };
+      canvas.addEventListener('pointerup', stopDrag);
+      canvas.addEventListener('pointercancel', stopDrag);
+
+      const globeRadius = 145;
+      const cameraDistance = 450;
+
+      function render() {
+        requestAnimationFrame(render);
+        if (globeCurrentView !== 'globe') return;
+
+        if (globeAutoSpin && !isDragging && !userInteracting) {
+          targetRotY += 0.0035;
+        }
+
+        rotX += (targetRotX - rotX) * 0.08;
+        rotY += (targetRotY - rotY) * 0.08;
+
+        const cx = width / 2;
+        const cy = height / 2;
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Ambient radial core
+        const bgGlow = ctx.createRadialGradient(cx, cy, globeRadius * 0.2, cx, cy, globeRadius * 1.6);
+        bgGlow.addColorStop(0, 'rgba(20, 184, 166, 0.09)');
+        bgGlow.addColorStop(0.5, 'rgba(232, 168, 48, 0.04)');
+        bgGlow.addColorStop(1, 'transparent');
+        ctx.fillStyle = bgGlow;
+        ctx.fillRect(0, 0, width, height);
+
+        const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+        const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+
+        function project(x0, y0, z0) {
+          const x1 = x0 * cosY + z0 * sinY;
+          const z1 = -x0 * sinY + z0 * cosY;
+          const y2 = y0 * cosX - z1 * sinX;
+          const z2 = y0 * sinX + z1 * cosX;
+
+          const fov = cameraDistance / (cameraDistance - z2);
+          return {
+            x: cx + x1 * fov,
+            y: cy - y2 * fov,
+            z: z2,
+            scale: fov
+          };
+        }
+
+        // Atmosphere Rim
+        ctx.save();
+        const rimGrad = ctx.createRadialGradient(cx, cy, globeRadius * 0.8, cx, cy, globeRadius * 1.06);
+        rimGrad.addColorStop(0, 'transparent');
+        rimGrad.addColorStop(0.7, 'rgba(20, 184, 166, 0.16)');
+        rimGrad.addColorStop(1, 'transparent');
+        ctx.fillStyle = rimGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, globeRadius * 1.06, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Latitudes
+        const latitudes = [-55, -30, 0, 30, 55];
+        latitudes.forEach(lat => {
+          const latRad = (lat * Math.PI) / 180;
+          const rRing = globeRadius * Math.cos(latRad);
+          const yRing = globeRadius * Math.sin(latRad);
+          const steps = 44;
+
+          ctx.beginPath();
+          let started = false;
+          for (let s = 0; s <= steps; s++) {
+            const th = (s / steps) * Math.PI * 2;
+            const x0 = rRing * Math.cos(th);
+            const z0 = rRing * Math.sin(th);
+            const p = project(x0, yRing, z0);
+
+            if (p.z > -20) {
+              if (!started) { ctx.moveTo(p.x, p.y); started = true; }
+              else { ctx.lineTo(p.x, p.y); }
+            } else {
+              started = false;
+            }
+          }
+          ctx.strokeStyle = lat === 0 ? 'rgba(232, 168, 48, 0.38)' : 'rgba(20, 184, 166, 0.12)';
+          ctx.lineWidth = lat === 0 ? 1.5 : 0.8;
+          ctx.stroke();
+        });
+
+        // Longitudes
+        for (let m = 0; m < 6; m++) {
+          const mLon = (m * Math.PI) / 6;
+          const steps = 40;
+          ctx.beginPath();
+          let started = false;
+          for (let s = 0; s <= steps; s++) {
+            const phi = (s / steps) * Math.PI * 2;
+            const x0 = globeRadius * Math.sin(phi) * Math.cos(mLon);
+            const y0 = globeRadius * Math.cos(phi);
+            const z0 = globeRadius * Math.sin(phi) * Math.sin(mLon);
+            const p = project(x0, y0, z0);
+
+            if (p.z > -20) {
+              if (!started) { ctx.moveTo(p.x, p.y); started = true; }
+              else { ctx.lineTo(p.x, p.y); }
+            } else {
+              started = false;
+            }
+          }
+          ctx.strokeStyle = 'rgba(20, 184, 166, 0.14)';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+
+        // Starfield Particles
+        sphereParticles.forEach(pt => {
+          const p = project(pt.x * globeRadius, pt.y * globeRadius, pt.z * globeRadius);
+          if (p.z > -30) {
+            const alpha = pt.alpha * (p.z > 0 ? 1 : 0.35);
+            ctx.fillStyle = `rgba(232, 168, 48, ${alpha})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, pt.size * p.scale, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        });
+
+        // Orbital Nodes & Lasers
+        const orbitalRadius = globeRadius * 1.34;
+        achievementsList.forEach((m, idx) => {
+          const latRad = (m.lat * Math.PI) / 180;
+          const lonRad = (m.lon * Math.PI) / 180;
+
+          const x0 = orbitalRadius * Math.cos(latRad) * Math.cos(lonRad);
+          const y0 = orbitalRadius * Math.sin(latRad);
+          const z0 = orbitalRadius * Math.cos(latRad) * Math.sin(lonRad);
+
+          const p = project(x0, y0, z0);
+          const pCore = project(x0 * 0.72, y0 * 0.72, z0 * 0.72);
+
+          // Vector laser beam
+          ctx.beginPath();
+          ctx.moveTo(pCore.x, pCore.y);
+          ctx.lineTo(p.x, p.y);
+          const isFwd = p.z > 0;
+          ctx.strokeStyle = isFwd
+            ? (idx === currentActiveMilestoneIndex ? 'rgba(232, 168, 48, 0.85)' : 'rgba(20, 184, 166, 0.45)')
+            : 'rgba(255, 255, 255, 0.08)';
+          ctx.lineWidth = idx === currentActiveMilestoneIndex ? 2 : 1;
+          ctx.stroke();
+
+          // Surface Node Pin
+          ctx.beginPath();
+          ctx.arc(pCore.x, pCore.y, (idx === currentActiveMilestoneIndex ? 4.5 : 2.5) * p.scale, 0, Math.PI * 2);
+          ctx.fillStyle = m.color;
+          ctx.fill();
+
+          // Update floating DOM node
+          const nodeEl = document.getElementById('globe-node-' + idx);
+          if (nodeEl) {
+            const depthNorm = (p.z + orbitalRadius) / (orbitalRadius * 2);
+            const scale = Math.max(0.68, Math.min(1.15, 0.74 + depthNorm * 0.4));
+            const opacity = Math.max(0.18, Math.min(1, 0.22 + depthNorm * 0.78));
+            const zIndex = Math.round(depthNorm * 100);
+
+            nodeEl.style.transform = `translate(-50%, -50%) translate3d(${p.x - cx}px, ${p.y - cy}px, 0) scale(${scale})`;
+            nodeEl.style.opacity = opacity;
+            nodeEl.style.zIndex = zIndex;
+            nodeEl.style.pointerEvents = depthNorm > 0.32 ? 'auto' : 'none';
+          }
+        });
+      }
+
+      render();
+      selectMilestone(0, false);
+    }
+    init3DGlobe();
 
     /* 2. INTERACTIVE SPOTLIGHT & SUBTLE 3D TILT ON CARDS */
     function initCardSpotlights() {
