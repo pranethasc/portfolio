@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -18,6 +18,7 @@
           fontFamily: {
             sans: ['"Space Grotesk"', 'sans-serif'],
             heading: ['Syne', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
           }
         }
@@ -265,6 +266,161 @@
       color: #f0c060;
     }
 
+    /* 3D PHOTOGRAPHY GALLERY EXHIBITION STYLES */
+    .gallery-stage-container {
+      position: relative;
+      width: 100%;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      perspective: 1400px;
+      overflow: hidden;
+      user-select: none;
+      touch-action: pan-y;
+      background: radial-gradient(circle at 50% 45%, rgba(18, 26, 44, 0.75) 0%, #020817 78%);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8), 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+    }
+    .gallery-carousel-viewport {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+    }
+    .gallery-carousel-cylinder {
+      position: relative;
+      width: 320px;
+      height: 220px;
+      transform-style: preserve-3d;
+      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-frame-card {
+      position: absolute;
+      width: 320px;
+      height: 220px;
+      left: 0;
+      top: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: #0a1628;
+      box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.95), 0 0 25px rgba(232, 168, 48, 0.12);
+      cursor: pointer;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transition: box-shadow 0.4s ease, border-color 0.4s ease, filter 0.4s ease;
+    }
+    .gallery-frame-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-frame-card:hover img {
+      transform: scale(1.06);
+    }
+    .gallery-frame-card.active-frame {
+      border-color: rgba(232, 168, 48, 0.9) !important;
+      box-shadow: 0 35px 85px -10px rgba(0, 0, 0, 0.98), 0 0 50px rgba(232, 168, 48, 0.4) !important;
+    }
+    .gallery-frame-card:hover {
+      border-color: rgba(232, 168, 48, 0.75);
+    }
+    .gallery-center-watermark {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      letter-spacing: -0.02em;
+      text-shadow: 0 10px 40px rgba(0, 0, 0, 0.95), 0 0 60px rgba(232, 168, 48, 0.25);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1;
+      white-space: nowrap;
+    }
+
+    /* 3D CIRCULAR GALLERY FOR CERTIFICATIONS */
+    .circular-gallery-stage {
+      position: relative;
+      width: 100%;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+      overflow: hidden;
+      user-select: none;
+      touch-action: pan-y;
+      background: radial-gradient(circle at 50% 50%, rgba(18, 26, 44, 0.75) 0%, #020817 80%);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85);
+    }
+    .circular-gallery-viewport {
+      position: relative;
+      width: 100%;
+      height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+    }
+    .circular-gallery-cylinder {
+      position: relative;
+      width: 250px;
+      height: 350px;
+      transform-style: preserve-3d;
+      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .circular-card {
+      position: absolute;
+      width: 250px;
+      height: 350px;
+      left: 0;
+      top: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: #0a1628;
+      box-shadow: 0 25px 55px -10px rgba(0, 0, 0, 0.95);
+      cursor: pointer;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transition: box-shadow 0.4s ease, border-color 0.4s ease, filter 0.4s ease;
+    }
+    .circular-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .circular-card:hover img {
+      transform: scale(1.06);
+    }
+    .circular-card.active-circular-card {
+      border-color: rgba(232, 168, 48, 0.9) !important;
+      box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.98), 0 0 45px rgba(232, 168, 48, 0.4) !important;
+    }
+    .circular-card .circular-caption-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(2, 8, 23, 0.05) 0%, rgba(2, 8, 23, 0.4) 45%, rgba(2, 8, 23, 0.95) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+    }
+
     ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:#020817; } ::-webkit-scrollbar-thumb { background:#162952; border-radius:3px; } ::-webkit-scrollbar-thumb:hover { background:#e8a830; }
   </style>
 </head>
@@ -426,12 +582,15 @@
           <div>
             <div class="section-pill mb-4">Honors &amp; Milestones</div>
             <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white">Key <span class="shimmer-text">Achievements</span></h2>
-            <p class="text-slate-400 mt-2 max-w-xl text-sm leading-relaxed">Explore academic milestones and credentials projected on an interactive 3D sphere.</p>
+            <p class="text-slate-400 mt-2 max-w-xl text-sm leading-relaxed">Exhibition of academic milestones, department rankings, and professional credentials in 3D photography showcase.</p>
           </div>
           <!-- View Switcher Toggle -->
           <div class="flex items-center gap-1.5 p-1 bg-[#0a1628] border border-white/10 rounded-xl self-start md:self-auto shadow-lg">
-            <button id="btn-view-globe" onclick="setAchievementView('globe')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gradient-to-r from-yellow-500/20 to-teal-400/20 text-yellow-400 border border-yellow-500/30 shadow">
-              <i data-lucide="globe" class="w-3.5 h-3.5 text-teal-400"></i> 3D Globe
+            <button id="btn-view-gallery" onclick="setAchievementView('gallery')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gradient-to-r from-yellow-500/20 to-teal-400/20 text-yellow-400 border border-yellow-500/30 shadow">
+              <i data-lucide="camera" class="w-3.5 h-3.5 text-yellow-400"></i> 3D Gallery
+            </button>
+            <button id="btn-view-globe" onclick="setAchievementView('globe')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all text-slate-400 hover:text-white border border-transparent">
+              <i data-lucide="globe" class="w-3.5 h-3.5"></i> 3D Globe
             </button>
             <button id="btn-view-grid" onclick="setAchievementView('grid')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all text-slate-400 hover:text-white border border-transparent">
               <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Grid View
@@ -439,8 +598,78 @@
           </div>
         </div>
 
-        <!-- 3D GLOBE VIEW CONTAINER -->
-        <div id="achievements-globe-wrapper" class="w-full">
+        <!-- 1. 3D PHOTOGRAPHY GALLERY VIEW (Primary Feature) -->
+        <div id="achievements-gallery-wrapper" class="w-full mb-8">
+          <div class="gallery-stage-container py-12 px-4 sm:px-8 relative">
+
+            <!-- Ambient Spotlight Cone -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[420px] h-[250px] bg-gradient-to-b from-yellow-500/15 via-teal-400/5 to-transparent blur-3xl pointer-events-none"></div>
+
+            <!-- Central Serif Editorial Title (Shadway Style) -->
+            <div class="gallery-carousel-viewport my-4" id="gallery-carousel-viewport">
+              <div class="gallery-center-watermark text-5xl sm:text-7xl lg:text-8xl text-white font-serif italic tracking-tight opacity-90 select-none">
+                Achievements
+              </div>
+
+              <!-- 3D Cylindrical Carousel Track -->
+              <div class="gallery-carousel-cylinder" id="gallery-cylinder">
+                <!-- Injected via JavaScript with 3D photography frames -->
+              </div>
+            </div>
+
+            <!-- Minimalist Navigation Bar & Counter -->
+            <div class="flex items-center justify-center gap-6 mt-4 z-20">
+              <button onclick="prevGallerySlide()" class="w-9 h-9 rounded-full bg-white/5 hover:bg-yellow-500/20 border border-white/10 hover:border-yellow-500/40 flex items-center justify-center text-slate-300 hover:text-yellow-400 transition hover:scale-110 active:scale-95">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              <div class="font-mono text-xs text-slate-400 tracking-widest bg-white/[0.03] px-3 py-1 rounded-full border border-white/5">
+                <span id="gallery-current-idx" class="text-yellow-400 font-bold">01</span> <span class="text-slate-600">/</span> <span class="text-slate-500">06</span>
+              </div>
+              <button onclick="nextGallerySlide()" class="w-9 h-9 rounded-full bg-white/5 hover:bg-yellow-500/20 border border-white/10 hover:border-yellow-500/40 flex items-center justify-center text-slate-300 hover:text-yellow-400 transition hover:scale-110 active:scale-95">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- Authentic Navigation Instructions (Matching Reference Exactly) -->
+            <div class="font-mono text-[10px] sm:text-[11px] text-slate-500 tracking-widest uppercase text-center mt-6 select-none leading-relaxed">
+              <div>USE MOUSE WHEEL, ARROW KEYS, OR TOUCH TO NAVIGATE</div>
+              <div class="text-slate-600 mt-0.5">AUTO-PLAY RESUMES AFTER 3 SECONDS OF INACTIVITY</div>
+            </div>
+
+            <!-- Active Artwork Exhibition Placard HUD -->
+            <div class="w-full max-w-2xl mx-auto mt-8 bg-[#0a1628]/90 backdrop-blur-xl border border-yellow-500/25 rounded-xl p-5 sm:p-6 shadow-2xl z-20">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-start gap-4">
+                  <div id="gallery-hud-icon" class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 shrink-0">
+                    <i data-lucide="award" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <span id="gallery-hud-category" class="font-mono text-[10px] uppercase tracking-widest text-yellow-400/80 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/20">College Merit</span>
+                      <span id="gallery-hud-badge" class="font-mono text-[10px] uppercase tracking-wider text-teal-400 bg-teal-400/10 px-2 py-0.5 rounded border border-teal-400/20">Merit Scholar</span>
+                    </div>
+                    <h3 id="gallery-hud-title" class="font-heading font-bold text-lg sm:text-xl text-white">Mahatma Gandhi Merit Scholarship</h3>
+                    <p id="gallery-hud-desc" class="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">Awarded in college at KCLAS for demonstrated academic distinction, discipline, and exemplary scholastic performance.</p>
+                  </div>
+                </div>
+                <!-- Actions -->
+                <div class="flex sm:flex-col items-center sm:items-end gap-2 shrink-0 pt-3 sm:pt-0 border-t sm:border-t-0 border-white/5">
+                  <a href="#" id="gallery-hud-verify" target="_blank" data-credential-id="mg-merit-scholarship" data-title="Mahatma Gandhi Merit Scholarship" onclick="handleCredentialClick(event,this)" class="btn-primary text-xs px-3.5 py-2 w-full sm:w-auto text-center justify-center">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    <span class="cred-label">Verify Credential</span>
+                  </a>
+                  <button id="gallery-hud-attach" onclick="openLinkModal('mg-merit-scholarship','Mahatma Gandhi Merit Scholarship')" class="btn-outline text-xs px-3 py-1.5 w-full sm:w-auto text-center justify-center text-[11px]">
+                    <i data-lucide="link" class="w-3.5 h-3.5"></i> Attach Link
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. 3D GLOBE VIEW CONTAINER (Toggleable) -->
+        <div id="achievements-globe-wrapper" class="w-full hidden">
           <div class="dossier-card rounded-2xl p-6 sm:p-10 border border-yellow-500/20 relative overflow-hidden bg-[#0a1628]/80 backdrop-blur-xl">
             <!-- Globe Controls Header -->
             <div class="flex flex-wrap items-center justify-between gap-3 mb-2 pb-4 border-b border-white/5 font-mono text-[11px] text-slate-400">
@@ -625,12 +854,61 @@
       <div class="ambient-glow-teal w-[320px] h-[320px] bottom-10 -left-20"></div>
 
       <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
-        <div class="mb-12" data-aos="fade-up">
-          <div class="section-pill mb-4">Continuous Learning</div>
-          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white">Certifications &amp; <span class="gold-text">Workshops</span></h2>
-          <p class="text-slate-500 mt-2">Professional training programs and accredited development courses.</p>
+        <div class="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6" data-aos="fade-up">
+          <div>
+            <div class="section-pill mb-4">Continuous Learning</div>
+            <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white">Certifications &amp; <span class="gold-text">Workshops</span></h2>
+            <p class="text-slate-400 mt-2 text-sm leading-relaxed">Accredited development courses and professional training arranged in an interactive 3D circular gallery.</p>
+          </div>
+          <!-- View Switcher Toggle -->
+          <div class="flex items-center gap-1.5 p-1 bg-[#0a1628] border border-white/10 rounded-xl self-start md:self-auto shadow-lg">
+            <button id="btn-view-certs-circle" onclick="setCertsView('circle')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gradient-to-r from-yellow-500/20 to-teal-400/20 text-yellow-400 border border-yellow-500/30 shadow">
+              <i data-lucide="rotate-3d" class="w-3.5 h-3.5 text-yellow-400"></i> 3D Circular Ring
+            </button>
+            <button id="btn-view-certs-grid" onclick="setCertsView('grid')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all text-slate-400 hover:text-white border border-transparent">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Grid View
+            </button>
+          </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- 1. 3D CIRCULAR RING GALLERY (Default View) -->
+        <div id="certs-circle-wrapper" class="w-full mb-8">
+          <div class="circular-gallery-stage py-10 px-4 sm:px-8 relative">
+
+            <!-- Ambient Spotlight Cone -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[380px] h-[220px] bg-gradient-to-b from-teal-400/15 via-yellow-500/5 to-transparent blur-3xl pointer-events-none"></div>
+
+            <!-- 3D Circular Viewport & Cylinder -->
+            <div class="circular-gallery-viewport my-4" id="certs-carousel-viewport">
+              <div class="circular-gallery-cylinder" id="certs-cylinder">
+                <!-- Injected via JavaScript with 5 portrait circular gallery cards -->
+              </div>
+            </div>
+
+            <!-- Navigation Controls & Counter -->
+            <div class="flex items-center justify-center gap-6 mt-4 z-20">
+              <button onclick="prevCertsSlide()" class="w-9 h-9 rounded-full bg-white/5 hover:bg-teal-400/20 border border-white/10 hover:border-teal-400/40 flex items-center justify-center text-slate-300 hover:text-teal-400 transition hover:scale-110 active:scale-95">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              <div class="font-mono text-xs text-slate-400 tracking-widest bg-white/[0.03] px-3 py-1 rounded-full border border-white/5">
+                <span id="certs-current-idx" class="text-teal-400 font-bold">01</span> <span class="text-slate-600">/</span> <span class="text-slate-500">05</span>
+              </div>
+              <button onclick="nextCertsSlide()" class="w-9 h-9 rounded-full bg-white/5 hover:bg-teal-400/20 border border-white/10 hover:border-teal-400/40 flex items-center justify-center text-slate-300 hover:text-teal-400 transition hover:scale-110 active:scale-95">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- Authentic Micro-Instructions -->
+            <div class="font-mono text-[10px] sm:text-[11px] text-slate-500 tracking-widest uppercase text-center mt-6 select-none leading-relaxed">
+              <div>DRAG, SWIPE, OR USE ARROWS TO ROTATE CIRCLE</div>
+              <div class="text-slate-600 mt-0.5">CLICK ANY CARD TO FOCUS · AUTO-PLAY RESUMES AFTER 3 SECONDS</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. CLASSIC GRID VIEW (Toggleable) -->
+        <div id="certs-grid-wrapper" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 hidden">
 
           <div data-aos="fade-up" data-aos-delay="50" class="dossier-card rounded-2xl p-6 flex flex-col justify-between">
             <div><div class="flex items-center gap-3 mb-4"><div class="p-2.5 rounded-lg bg-yellow-500/10 border border-yellow-500/15 text-yellow-400"><i data-lucide="award" class="w-4 h-4"></i></div><div><div class="font-mono text-[10px] text-yellow-400/70 uppercase tracking-widest">NPTEL</div><h3 class="font-heading font-bold text-white">Soft Skill Development</h3></div></div><span class="cert-badge bg-emerald-400/10 text-emerald-400 border border-emerald-400/15">✦ Elite Certification</span></div>
@@ -811,6 +1089,7 @@
         badge: 'Merit Scholar',
         icon: 'award',
         color: '#e8a830',
+        image: 'achieve_scholarship.jpg',
         desc: 'Awarded in college at KCLAS for demonstrated academic distinction, discipline, and exemplary scholastic performance.',
         lat: 15,
         lon: 10
@@ -823,6 +1102,7 @@
         badge: '2 Consecutive Sems',
         icon: 'crown',
         color: '#14b8a6',
+        image: 'achieve_rank1.jpg',
         desc: 'Secured 1st Rank in the Department for two consecutive semesters in the B.Com program at KCLAS.',
         lat: 38,
         lon: 72
@@ -835,6 +1115,7 @@
         badge: 'Distinction',
         icon: 'check-check',
         color: '#e8a830',
+        image: 'achieve_cma.jpg',
         desc: 'Cleared the CMA Foundation examination with Distinction, building strong analytical expertise in cost accounting and finance.',
         lat: -25,
         lon: 135
@@ -847,6 +1128,7 @@
         badge: 'Commerce Distinction',
         icon: 'trending-up',
         color: '#14b8a6',
+        image: 'achieve_12th.jpg',
         desc: 'Graduated with top academic standing and distinction in Commerce & Accounting subjects.',
         lat: 40,
         lon: 195
@@ -859,6 +1141,7 @@
         badge: 'Foundational Merit',
         icon: 'star',
         color: '#e8a830',
+        image: 'achieve_10th.jpg',
         desc: 'Consistent scholastic performance across all quantitative, analytical, and foundational subjects.',
         lat: -35,
         lon: 255
@@ -871,6 +1154,7 @@
         badge: 'Innovation Trainee',
         icon: 'rocket',
         color: '#14b8a6',
+        image: 'achieve_protosem.jpg',
         desc: 'Selected as an Innovation Professional Trainee undergoing a comprehensive 21-week industry immersion program.',
         lat: 5,
         lon: 315
@@ -879,25 +1163,229 @@
 
     let currentActiveMilestoneIndex = 0;
     let globeAutoSpin = true;
-    let globeCurrentView = 'globe';
+    let globeCurrentView = 'gallery';
+
+    /* 3D PHOTOGRAPHY GALLERY SYSTEM (Shadway Editorial Style) */
+    let galleryActiveIndex = 0;
+    let galleryAutoPlayTimer = null;
+    let galleryAutoPlayInterval = null;
+    let galleryRadius = 380;
+
+    function init3DPhotographyGallery() {
+      const cylinder = document.getElementById('gallery-cylinder');
+      if (!cylinder) return;
+
+      const isMobile = window.innerWidth < 640;
+      galleryRadius = isMobile ? 250 : 380;
+
+      cylinder.innerHTML = achievementsList.map((m, idx) => {
+        const angle = idx * 60;
+        return `
+          <div id="gallery-card-${idx}" onclick="goToGallerySlide(${idx})" class="gallery-frame-card ${idx === 0 ? 'active-frame' : ''}" style="transform: rotateY(${angle}deg) translateZ(${galleryRadius}px);">
+            <img src="${m.image}" alt="${m.title}" loading="lazy" />
+            <div class="card-caption-overlay">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-[9px] uppercase tracking-wider text-yellow-400/90 bg-black/60 px-2 py-0.5 rounded backdrop-blur-sm border border-yellow-500/20">
+                  PLATE 0${idx + 1}
+                </span>
+                <span class="font-mono text-[9px] text-white/80 bg-black/50 px-2 py-0.5 rounded border border-white/10">
+                  ${m.badge}
+                </span>
+              </div>
+              <div>
+                <span class="font-mono text-[9px] text-teal-400 block font-semibold">${m.category}</span>
+                <h4 class="font-heading font-bold text-sm text-white drop-shadow">${m.title}</h4>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      updateGalleryView();
+      startGalleryAutoPlay();
+
+      // Navigation: Mouse Wheel on Viewport
+      const viewport = document.getElementById('gallery-carousel-viewport');
+      if (viewport) {
+        let wheelCooldown = false;
+        viewport.addEventListener('wheel', e => {
+          e.preventDefault();
+          if (wheelCooldown) return;
+          wheelCooldown = true;
+          setTimeout(() => { wheelCooldown = false; }, 280);
+
+          if (e.deltaY > 0 || e.deltaX > 0) {
+            nextGallerySlide();
+          } else {
+            prevGallerySlide();
+          }
+          resetInactivityTimer();
+        }, { passive: false });
+
+        // Navigation: Touch / Pointer Drag
+        let startX = 0;
+        let isDragging = false;
+
+        viewport.addEventListener('pointerdown', e => {
+          startX = e.clientX;
+          isDragging = true;
+          resetInactivityTimer();
+        });
+
+        viewport.addEventListener('pointerup', e => {
+          if (!isDragging) return;
+          isDragging = false;
+          const diffX = e.clientX - startX;
+          if (Math.abs(diffX) > 40) {
+            if (diffX < 0) nextGallerySlide();
+            else prevGallerySlide();
+          }
+          resetInactivityTimer();
+        });
+      }
+
+      // Keyboard arrow keys
+      window.addEventListener('keydown', e => {
+        if (globeCurrentView !== 'gallery') return;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          nextGallerySlide();
+          resetInactivityTimer();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          prevGallerySlide();
+          resetInactivityTimer();
+        }
+      });
+    }
+
+    function updateGalleryView() {
+      const cylinder = document.getElementById('gallery-cylinder');
+      if (!cylinder) return;
+
+      const angle = -galleryActiveIndex * 60;
+      cylinder.style.transform = `rotateY(${angle}deg)`;
+
+      achievementsList.forEach((_, idx) => {
+        const card = document.getElementById(`gallery-card-${idx}`);
+        if (!card) return;
+        const diff = (idx - galleryActiveIndex + 6) % 6;
+        if (diff === 0) {
+          card.classList.add('active-frame');
+          card.style.filter = 'brightness(1.05)';
+          card.style.opacity = '1';
+        } else if (diff === 1 || diff === 5) {
+          card.classList.remove('active-frame');
+          card.style.filter = 'brightness(0.72)';
+          card.style.opacity = '0.65';
+        } else {
+          card.classList.remove('active-frame');
+          card.style.filter = 'brightness(0.35)';
+          card.style.opacity = '0.3';
+        }
+      });
+
+      const counterEl = document.getElementById('gallery-current-idx');
+      if (counterEl) counterEl.textContent = `0${galleryActiveIndex + 1}`;
+
+      // Placard HUD update
+      const m = achievementsList[galleryActiveIndex];
+      if (m) {
+        const catEl = document.getElementById('gallery-hud-category');
+        const badgeEl = document.getElementById('gallery-hud-badge');
+        const titleEl = document.getElementById('gallery-hud-title');
+        const descEl = document.getElementById('gallery-hud-desc');
+        const iconEl = document.getElementById('gallery-hud-icon');
+        const verifyBtn = document.getElementById('gallery-hud-verify');
+        const attachBtn = document.getElementById('gallery-hud-attach');
+
+        if (catEl) catEl.textContent = m.category;
+        if (badgeEl) badgeEl.textContent = m.badge;
+        if (titleEl) titleEl.textContent = m.title;
+        if (descEl) descEl.textContent = m.desc;
+        if (iconEl) {
+          iconEl.innerHTML = `<i data-lucide="${m.icon}" class="w-6 h-6"></i>`;
+          iconEl.style.color = m.color;
+          iconEl.style.borderColor = m.color + '50';
+          iconEl.style.backgroundColor = m.color + '15';
+          lucide.createIcons({ root: iconEl });
+        }
+
+        if (verifyBtn) {
+          verifyBtn.setAttribute('data-credential-id', m.id);
+          verifyBtn.setAttribute('data-title', m.title);
+          const savedUrl = localStorage.getItem('cred_link_' + m.id);
+          if (savedUrl && savedUrl.trim()) {
+            verifyBtn.href = savedUrl;
+            const l = verifyBtn.querySelector('.cred-label');
+            if (l) l.textContent = 'View Link ↗';
+          } else {
+            verifyBtn.href = '#';
+            const l = verifyBtn.querySelector('.cred-label');
+            if (l) l.textContent = 'Verify Credential';
+          }
+        }
+
+        if (attachBtn) {
+          attachBtn.setAttribute('onclick', `openLinkModal('${m.id}','${m.title}')`);
+        }
+      }
+    }
+
+    function nextGallerySlide() {
+      galleryActiveIndex = (galleryActiveIndex + 1) % achievementsList.length;
+      updateGalleryView();
+    }
+
+    function prevGallerySlide() {
+      galleryActiveIndex = (galleryActiveIndex - 1 + achievementsList.length) % achievementsList.length;
+      updateGalleryView();
+    }
+
+    function goToGallerySlide(index) {
+      galleryActiveIndex = index;
+      updateGalleryView();
+      resetInactivityTimer();
+    }
+
+    function startGalleryAutoPlay() {
+      clearInterval(galleryAutoPlayInterval);
+      galleryAutoPlayInterval = setInterval(() => {
+        if (globeCurrentView === 'gallery') {
+          nextGallerySlide();
+        }
+      }, 4200);
+    }
+
+    function resetInactivityTimer() {
+      clearInterval(galleryAutoPlayInterval);
+      clearTimeout(galleryAutoPlayTimer);
+      galleryAutoPlayTimer = setTimeout(() => {
+        startGalleryAutoPlay();
+      }, 3000);
+    }
 
     function setAchievementView(view) {
       globeCurrentView = view;
+      const galleryWrap = document.getElementById('achievements-gallery-wrapper');
       const globeWrap = document.getElementById('achievements-globe-wrapper');
       const gridWrap = document.getElementById('achievements-grid-wrapper');
+      const btnGallery = document.getElementById('btn-view-gallery');
       const btnGlobe = document.getElementById('btn-view-globe');
       const btnGrid = document.getElementById('btn-view-grid');
 
-      if (view === 'globe') {
-        globeWrap.classList.remove('hidden');
-        gridWrap.classList.add('hidden');
-        btnGlobe.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gradient-to-r from-yellow-500/20 to-teal-400/20 text-yellow-400 border border-yellow-500/30 shadow';
-        btnGrid.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all text-slate-400 hover:text-white border border-transparent';
-      } else {
-        globeWrap.classList.add('hidden');
-        gridWrap.classList.remove('hidden');
-        btnGrid.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gradient-to-r from-yellow-500/20 to-teal-400/20 text-yellow-400 border border-yellow-500/30 shadow';
-        btnGlobe.className = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all text-slate-400 hover:text-white border border-transparent';
+      const activeClass = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gradient-to-r from-yellow-500/20 to-teal-400/20 text-yellow-400 border border-yellow-500/30 shadow';
+      const inactiveClass = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all text-slate-400 hover:text-white border border-transparent';
+
+      if (galleryWrap) galleryWrap.classList.toggle('hidden', view !== 'gallery');
+      if (globeWrap) globeWrap.classList.toggle('hidden', view !== 'globe');
+      if (gridWrap) gridWrap.classList.toggle('hidden', view !== 'grid');
+
+      if (btnGallery) btnGallery.className = view === 'gallery' ? activeClass : inactiveClass;
+      if (btnGlobe) btnGlobe.className = view === 'globe' ? activeClass : inactiveClass;
+      if (btnGrid) btnGrid.className = view === 'grid' ? activeClass : inactiveClass;
+
+      if (view === 'gallery') {
+        updateGalleryView();
+        resetInactivityTimer();
       }
     }
 
@@ -1257,6 +1745,230 @@
       selectMilestone(0, false);
     }
     init3DGlobe();
+    init3DPhotographyGallery();
+
+    /* 3D CIRCULAR GALLERY FOR CERTIFICATIONS */
+    const certsList = [
+      {
+        id: 'cert-nptel-soft-skills',
+        title: 'Soft Skill Development',
+        provider: 'NPTEL',
+        tag: 'Elite Certification',
+        tagClass: 'bg-emerald-400/10 text-emerald-400 border border-emerald-400/20',
+        image: 'cert_soft_skills.jpg',
+        icon: 'award',
+        color: '#e8a830'
+      },
+      {
+        id: 'cert-hp-leadership',
+        title: 'Effective Leadership',
+        provider: 'HP LIFE',
+        tag: 'Leadership & Management',
+        tagClass: 'bg-white/10 text-slate-300 border border-white/15',
+        image: 'cert_leadership.jpg',
+        icon: 'users',
+        color: '#14b8a6'
+      },
+      {
+        id: 'cert-hp-presentations',
+        title: 'Effective Presentations',
+        provider: 'HP LIFE',
+        tag: 'Business Communication',
+        tagClass: 'bg-white/10 text-slate-300 border border-white/15',
+        image: 'cert_presentations.jpg',
+        icon: 'presentation',
+        color: '#e8a830'
+      },
+      {
+        id: 'cert-tcs-contract-management',
+        title: 'Contract Management',
+        provider: 'TCS iON',
+        tag: 'Corporate Compliance',
+        tagClass: 'bg-white/10 text-slate-300 border border-white/15',
+        image: 'cert_contract_management.jpg',
+        icon: 'file-check-2',
+        color: '#14b8a6'
+      },
+      {
+        id: 'cert-amypo-excel',
+        title: 'Basic Excel Micro Credential',
+        provider: 'Amypo Technologies',
+        tag: 'Workshop & Credential',
+        tagClass: 'bg-emerald-400/10 text-emerald-400 border border-emerald-400/20',
+        image: 'cert_excel.jpg',
+        icon: 'table',
+        color: '#e8a830'
+      }
+    ];
+
+    let certsActiveIndex = 0;
+    let certsAutoPlayTimer = null;
+    let certsAutoPlayInterval = null;
+    let certsRadius = 310;
+    let certsCurrentView = 'circle';
+
+    function init3DCircularCertsGallery() {
+      const cylinder = document.getElementById('certs-cylinder');
+      if (!cylinder) return;
+
+      const isMobile = window.innerWidth < 640;
+      certsRadius = isMobile ? 220 : 310;
+
+      cylinder.innerHTML = certsList.map((c, idx) => {
+        const angle = idx * 72;
+        return `
+          <div id="certs-card-${idx}" onclick="goToCertsSlide(${idx})" class="circular-card ${idx === 0 ? 'active-circular-card' : ''}" style="transform: rotateY(${angle}deg) translateZ(${certsRadius}px);">
+            <img src="${c.image}" alt="${c.title}" loading="lazy" />
+            <div class="circular-caption-overlay">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-[10px] uppercase tracking-wider text-yellow-400/90 bg-black/60 px-2 py-0.5 rounded backdrop-blur-sm border border-yellow-500/20">
+                  ${c.provider}
+                </span>
+                <span class="font-mono text-[9px] px-2 py-0.5 rounded backdrop-blur-sm ${c.tagClass}">
+                  ${c.tag}
+                </span>
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-base text-white drop-shadow-md leading-tight mb-2">${c.title}</h3>
+                <div class="flex items-center justify-between gap-2 pt-2 border-t border-white/10 pointer-events-auto">
+                  <a href="#" target="_blank" data-credential-id="${c.id}" data-title="${c.title}" onclick="handleCredentialClick(event,this)" class="inline-flex items-center gap-1 text-xs font-mono text-yellow-400 hover:text-yellow-300 transition-colors">
+                    <i data-lucide="external-link" class="w-3 h-3"></i><span class="cred-label">Verify</span>
+                  </a>
+                  <button onclick="openLinkModal('${c.id}','${c.title}')" class="flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded bg-white/10 hover:bg-yellow-500/20 text-slate-300 hover:text-yellow-400 border border-white/10 hover:border-yellow-500/30 transition">
+                    <i data-lucide="link" class="w-2.5 h-2.5"></i> Attach
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons({ root: cylinder });
+      updateCertsView();
+      startCertsAutoPlay();
+
+      const viewport = document.getElementById('certs-carousel-viewport');
+      if (viewport) {
+        let wheelCooldown = false;
+        viewport.addEventListener('wheel', e => {
+          e.preventDefault();
+          if (wheelCooldown) return;
+          wheelCooldown = true;
+          setTimeout(() => { wheelCooldown = false; }, 280);
+
+          if (e.deltaY > 0 || e.deltaX > 0) nextCertsSlide();
+          else prevCertsSlide();
+          resetCertsInactivityTimer();
+        }, { passive: false });
+
+        let startX = 0;
+        let isDragging = false;
+
+        viewport.addEventListener('pointerdown', e => {
+          startX = e.clientX;
+          isDragging = true;
+          resetCertsInactivityTimer();
+        });
+
+        viewport.addEventListener('pointerup', e => {
+          if (!isDragging) return;
+          isDragging = false;
+          const diffX = e.clientX - startX;
+          if (Math.abs(diffX) > 40) {
+            if (diffX < 0) nextCertsSlide();
+            else prevCertsSlide();
+          }
+          resetCertsInactivityTimer();
+        });
+      }
+    }
+
+    function updateCertsView() {
+      const cylinder = document.getElementById('certs-cylinder');
+      if (!cylinder) return;
+
+      const angle = -certsActiveIndex * 72;
+      cylinder.style.transform = `rotateY(${angle}deg)`;
+
+      certsList.forEach((_, idx) => {
+        const card = document.getElementById(`certs-card-${idx}`);
+        if (!card) return;
+        const diff = (idx - certsActiveIndex + 5) % 5;
+        if (diff === 0) {
+          card.classList.add('active-circular-card');
+          card.style.filter = 'brightness(1.05)';
+          card.style.opacity = '1';
+        } else if (diff === 1 || diff === 4) {
+          card.classList.remove('active-circular-card');
+          card.style.filter = 'brightness(0.7)';
+          card.style.opacity = '0.65';
+        } else {
+          card.classList.remove('active-circular-card');
+          card.style.filter = 'brightness(0.35)';
+          card.style.opacity = '0.3';
+        }
+      });
+
+      const counterEl = document.getElementById('certs-current-idx');
+      if (counterEl) counterEl.textContent = `0${certsActiveIndex + 1}`;
+    }
+
+    function nextCertsSlide() {
+      certsActiveIndex = (certsActiveIndex + 1) % certsList.length;
+      updateCertsView();
+    }
+
+    function prevCertsSlide() {
+      certsActiveIndex = (certsActiveIndex - 1 + certsList.length) % certsList.length;
+      updateCertsView();
+    }
+
+    function goToCertsSlide(index) {
+      certsActiveIndex = index;
+      updateCertsView();
+      resetCertsInactivityTimer();
+    }
+
+    function startCertsAutoPlay() {
+      clearInterval(certsAutoPlayInterval);
+      certsAutoPlayInterval = setInterval(() => {
+        if (certsCurrentView === 'circle') {
+          nextCertsSlide();
+        }
+      }, 4000);
+    }
+
+    function resetCertsInactivityTimer() {
+      clearInterval(certsAutoPlayInterval);
+      clearTimeout(certsAutoPlayTimer);
+      certsAutoPlayTimer = setTimeout(() => {
+        startCertsAutoPlay();
+      }, 3000);
+    }
+
+    function setCertsView(view) {
+      certsCurrentView = view;
+      const circleWrap = document.getElementById('certs-circle-wrapper');
+      const gridWrap = document.getElementById('certs-grid-wrapper');
+      const btnCircle = document.getElementById('btn-view-certs-circle');
+      const btnGrid = document.getElementById('btn-view-certs-grid');
+
+      const activeClass = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all bg-gradient-to-r from-yellow-500/20 to-teal-400/20 text-yellow-400 border border-yellow-500/30 shadow';
+      const inactiveClass = 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all text-slate-400 hover:text-white border border-transparent';
+
+      if (circleWrap) circleWrap.classList.toggle('hidden', view !== 'circle');
+      if (gridWrap) gridWrap.classList.toggle('hidden', view !== 'grid');
+
+      if (btnCircle) btnCircle.className = view === 'circle' ? activeClass : inactiveClass;
+      if (btnGrid) btnGrid.className = view === 'grid' ? activeClass : inactiveClass;
+
+      if (view === 'circle') {
+        updateCertsView();
+        resetCertsInactivityTimer();
+      }
+    }
+    init3DCircularCertsGallery();
 
     /* 2. INTERACTIVE SPOTLIGHT & SUBTLE 3D TILT ON CARDS */
     function initCardSpotlights() {
