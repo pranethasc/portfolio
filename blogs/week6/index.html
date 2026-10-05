@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Fabrication | Laser Cutting &amp; 3D Printing Hub</title>
+  <meta name="description" content="A comprehensive digital fabrication guide and hands-on laboratory report covering CO₂ Laser Cutting and Bambu Lab H2S 3D Printing by Pranetha at FORGE HW Junction DFab #2.">
+  <meta name="keywords" content="Digital Fabrication, Laser Cutting, 3D Printing, Bambu Lab H2S, FDM, CO2 Laser, RDWorks, Bambu Studio, Slicing, STL, Acrylic Cutting">
+  <meta name="author" content="Pranetha">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Digital Fabrication | Laser Cutting &amp; 3D Printing Hub">
+  <meta property="og:description" content="Explore complete technical walkthroughs for 1490 CO₂ Laser Cutting and Bambu Lab H2S 3D Printing with full laboratory data and physical results.">
+  <meta property="og:image" content="images/laser_types.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="brand">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <span>FAB</span><span style="color: var(--laser-orange);">LOG</span>
+        </div>
+        <span class="brand-tag">DFAB #2</span>
+      </a>
+
+      <!-- Quick Switcher Buttons in Header -->
+      <nav class="module-switcher-header" aria-label="Technology Switcher">
+        <button class="module-btn laser-btn switch-to-laser active">
+          <span>🔥</span> <span>Laser Cutting</span>
+        </button>
+        <button class="module-btn print-btn switch-to-print">
+          <span>🖨️</span> <span>3D Printing</span>
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search blog & specs...">
+        </div>
+
+        <button id="themeToggle" class="btn-icon" aria-label="Toggle theme">☀️</button>
+      </div>
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar-container">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+  </header>
+
+  <!-- Hero Header Section -->
+  <header class="hero-section">
+    <div class="hero-glow-beam"></div>
+    <div class="hero-content">
+      
+      <div id="heroBadgeRow" class="hero-badge-row">
+        <span class="badge badge-laser">🔥 Laser Fabrication</span>
+        <span class="badge badge-tech">⚡ 150W CO₂ 1490 System</span>
+        <span class="badge badge-lab">🏛️ FORGE HW Junction DFab #2</span>
+        <span class="badge badge-tech">📐 2.0mm Acrylic Transparent</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-title-gradient">Digital Fabrication</span>
+      </h1>
+
+      <p id="heroSubtitle" class="hero-subtitle">
+        CO₂ Laser Cutting &amp; Precision Acrylic Fabrication at FORGE HW Junction DFab #2 • A Comprehensive Technical Guide &amp; Laboratory Walkthrough
+      </p>
+
+      <!-- Prominent Technology Mode Switcher Box -->
+      <div class="hero-switcher-box">
+        <button class="hero-switch-btn laser-mode switch-to-laser active">
+          <span>🔥</span> <span>Laser Cutting Module</span>
+        </button>
+        <button class="hero-switch-btn print-mode switch-to-print">
+          <span>🖨️</span> <span>3D Printing Module</span>
+        </button>
+      </div>
+
+      <!-- Author Metadata Card -->
+      <div class="author-meta-card">
+        <div class="author-avatar">P</div>
+        <div class="author-info">
+          <div class="author-name">Pranetha</div>
+          <div class="author-role">Digital Fabrication Engineer</div>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <span>📅</span> <span>October 2026</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <span>⏱️</span> <span>10 min read</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <div class="blog-layout-container">
+
+    <!-- Sticky Table of Contents (Desktop Sidebar) -->
+    <aside class="sidebar-wrapper">
+      
+      <!-- TOC for Laser Cutting -->
+      <nav id="toc-laser" class="toc-card" aria-label="Laser Cutting Index">
+        <div class="toc-header">
+          <span class="toc-title">🔥 Laser Cutting</span>
+          <span style="font-size: 0.75rem; color: var(--laser-orange); font-family: var(--font-mono);">15 SECTIONS</span>
+        </div>
+        <ul class="toc-list">
+          <li class="toc-item"><a href="#what-is-laser" class="toc-link">01. What is Laser Cutting?</a></li>
+          <li class="toc-item"><a href="#stages-laser" class="toc-link">02. Stages of Laser Cutting</a></li>
+          <li class="toc-item"><a href="#types-laser" class="toc-link">03. Types &amp; Processes</a></li>
+          <li class="toc-item"><a href="#pros-cons-laser" class="toc-link">04. Advantages &amp; Limitations</a></li>
+          <li class="toc-item"><a href="#safety-laser" class="toc-link">05. Lab Safety Protocols</a></li>
+          <li class="toc-item"><a href="#machine-specs-laser" class="toc-link">06. 1490 Machine Details</a></li>
+          <li class="toc-item"><a href="#materials-laser" class="toc-link">07. Materials Used</a></li>
+          <li class="toc-item"><a href="#design-laser" class="toc-link">08. Selected Design &amp; Image</a></li>
+          <li class="toc-item"><a href="#file-prep-laser" class="toc-link">09. Image to DXF Preparation</a></li>
+          <li class="toc-item"><a href="#rdworks-laser" class="toc-link">10. RDWorks Nesting &amp; Layers</a></li>
+          <li class="toc-item"><a href="#settings-laser" class="toc-link">11. Settings &amp; Execution</a></li>
+          <li class="toc-item"><a href="#calc-laser" class="toc-link">12. Laser Dynamics Calc</a></li>
+          <li class="toc-item"><a href="#results-laser" class="toc-link">13. Final Result Showcase</a></li>
+          <li class="toc-item"><a href="#reflection-laser" class="toc-link">14. Problems &amp; Reflection</a></li>
+          <li class="toc-item"><a href="#files-laser" class="toc-link">15. Source Files</a></li>
+        </ul>
+      </nav>
+
+      <!-- TOC for 3D Printing -->
+      <nav id="toc-3d" class="toc-card" style="display: none;" aria-label="3D Printing Index">
+        <div class="toc-header">
+          <span class="toc-title">🖨️ 3D Printing</span>
+          <span style="font-size: 0.75rem; color: var(--laser-cyan); font-family: var(--font-mono);">15 SECTIONS</span>
+        </div>
+        <ul class="toc-list">
+          <li class="toc-item"><a href="#what-is-3d" class="toc-link">01. What is 3D Printing?</a></li>
+          <li class="toc-item"><a href="#stages-3d" class="toc-link">02. Stages of 3D Printing</a></li>
+          <li class="toc-item"><a href="#types-3d" class="toc-link">03. Types (FDM, SLA, DLP, SLS)</a></li>
+          <li class="toc-item"><a href="#process-3d" class="toc-link">04. Manufacturing Process</a></li>
+          <li class="toc-item"><a href="#pros-cons-3d" class="toc-link">05. Advantages &amp; Limitations</a></li>
+          <li class="toc-item"><a href="#printer-specs-3d" class="toc-link">06. Bambu Lab H2S Details</a></li>
+          <li class="toc-item"><a href="#slicer-mat-3d" class="toc-link">07. Slicer &amp; Material</a></li>
+          <li class="toc-item"><a href="#capabilities-3d" class="toc-link">08. Limits &amp; Capabilities</a></li>
+          <li class="toc-item"><a href="#subtractive-vs-additive" class="toc-link">09. Why Not Subtractive?</a></li>
+          <li class="toc-item"><a href="#stl-definition-3d" class="toc-link">10. STL Mesh Definition</a></li>
+          <li class="toc-item"><a href="#selected-stl-3d" class="toc-link">11. Selected Eagle STL</a></li>
+          <li class="toc-item"><a href="#slicer-settings-3d" class="toc-link">12. Bambu Slicer Settings</a></li>
+          <li class="toc-item"><a href="#metrics-3d" class="toc-link">13. Print Time &amp; Mass Metrics</a></li>
+          <li class="toc-item"><a href="#results-3d" class="toc-link">14. Final Result (Eagle)</a></li>
+          <li class="toc-item"><a href="#files-3d" class="toc-link">15. Source Files &amp; G-Code</a></li>
+        </ul>
+      </nav>
+
+    </aside>
+
+    <!-- Main Content Articles -->
+    <main class="article-body">
+
+      <!-- Mobile Accordion TOC -->
+      <div id="mobileToc" class="mobile-toc">
+        <div id="mobileTocHeader" class="mobile-toc-header">
+          <span>📑 Table of Contents (Tap to Expand)</span>
+          <span class="toc-arrow">▼</span>
+        </div>
+        <div class="mobile-toc-content">
+          <!-- Mobile Laser TOC -->
+          <ul id="mobile-toc-laser" class="toc-list">
+            <li class="toc-item"><a href="#what-is-laser" class="toc-link">01. What is Laser Cutting?</a></li>
+            <li class="toc-item"><a href="#stages-laser" class="toc-link">02. Stages of Laser Cutting</a></li>
+            <li class="toc-item"><a href="#types-laser" class="toc-link">03. Types &amp; Processes</a></li>
+            <li class="toc-item"><a href="#pros-cons-laser" class="toc-link">04. Advantages &amp; Limitations</a></li>
+            <li class="toc-item"><a href="#safety-laser" class="toc-link">05. Lab Safety Protocols</a></li>
+            <li class="toc-item"><a href="#machine-specs-laser" class="toc-link">06. 1490 Machine Details</a></li>
+            <li class="toc-item"><a href="#materials-laser" class="toc-link">07. Materials Used</a></li>
+            <li class="toc-item"><a href="#design-laser" class="toc-link">08. Selected Design &amp; Image</a></li>
+            <li class="toc-item"><a href="#file-prep-laser" class="toc-link">09. Image to DXF Preparation</a></li>
+            <li class="toc-item"><a href="#rdworks-laser" class="toc-link">10. RDWorks Nesting &amp; Layers</a></li>
+            <li class="toc-item"><a href="#settings-laser" class="toc-link">11. Settings &amp; Execution</a></li>
+            <li class="toc-item"><a href="#calc-laser" class="toc-link">12. Laser Dynamics Calc</a></li>
+            <li class="toc-item"><a href="#results-laser" class="toc-link">13. Final Result Showcase</a></li>
+            <li class="toc-item"><a href="#reflection-laser" class="toc-link">14. Problems &amp; Reflection</a></li>
+            <li class="toc-item"><a href="#files-laser" class="toc-link">15. Source Files</a></li>
+          </ul>
+          <!-- Mobile 3D TOC -->
+          <ul id="mobile-toc-3d" class="toc-list" style="display: none;">
+            <li class="toc-item"><a href="#what-is-3d" class="toc-link">01. What is 3D Printing?</a></li>
+            <li class="toc-item"><a href="#stages-3d" class="toc-link">02. Stages of 3D Printing</a></li>
+            <li class="toc-item"><a href="#types-3d" class="toc-link">03. Types (FDM, SLA, DLP, SLS)</a></li>
+            <li class="toc-item"><a href="#process-3d" class="toc-link">04. Manufacturing Process</a></li>
+            <li class="toc-item"><a href="#pros-cons-3d" class="toc-link">05. Advantages &amp; Limitations</a></li>
+            <li class="toc-item"><a href="#printer-specs-3d" class="toc-link">06. Bambu Lab H2S Details</a></li>
+            <li class="toc-item"><a href="#slicer-mat-3d" class="toc-link">07. Slicer &amp; Material</a></li>
+            <li class="toc-item"><a href="#capabilities-3d" class="toc-link">08. Limits &amp; Capabilities</a></li>
+            <li class="toc-item"><a href="#subtractive-vs-additive" class="toc-link">09. Why Not Subtractive?</a></li>
+            <li class="toc-item"><a href="#stl-definition-3d" class="toc-link">10. STL Mesh Definition</a></li>
+            <li class="toc-item"><a href="#selected-stl-3d" class="toc-link">11. Selected Eagle STL</a></li>
+            <li class="toc-item"><a href="#slicer-settings-3d" class="toc-link">12. Bambu Slicer Settings</a></li>
+            <li class="toc-item"><a href="#metrics-3d" class="toc-link">13. Print Time &amp; Mass Metrics</a></li>
+            <li class="toc-item"><a href="#results-3d" class="toc-link">14. Final Result (Eagle)</a></li>
+            <li class="toc-item"><a href="#files-3d" class="toc-link">15. Source Files &amp; G-Code</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           MODULE 1: LASER CUTTING (ACTIVE BY DEFAULT)
+           =================================================================== -->
+      <div id="module-laser" class="module-view active">
+        
+        <!-- SECTION 1: WHAT IS LASER CUTTING -->
+        <section id="what-is-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 01</span>
+            <h2 class="section-title"><span class="section-title-icon">⚡</span> What is Laser Cutting?</h2>
+          </div>
+
+          <div class="card-glass card-laser-glow">
+            <p>
+              <strong>Laser cutting</strong> is a manufacturing process that uses a high-powered laser beam to cut, engrave, or shape materials such as wood, acrylic, plastic, paper, and metal.
+            </p>
+            <p>
+              The laser beam is focused on a specific point of the material, producing intense heat that melts, burns, or vaporizes the material along a programmed path. This allows accurate and complex designs to be created with high precision.
+            </p>
+          </div>
+        </section>
+
+        <!-- SECTION 2: 8 STAGES OF LASER CUTTING -->
+        <section id="stages-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 02</span>
+            <h2 class="section-title"><span class="section-title-icon">🔄</span> Stages of Laser Cutting</h2>
+          </div>
+
+          <div class="stages-timeline">
+            <div class="stage-step-card active">
+              <div class="stage-badge">1</div>
+              <div class="stage-step-title">Design Preparation</div>
+              <p class="stage-step-desc">Create the required design using CAD or graphic design software.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge">2</div>
+              <div class="stage-step-title">Material Selection</div>
+              <p class="stage-step-desc">Select a suitable material and place it properly on the cutting bed.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge">3</div>
+              <div class="stage-step-title">Machine Setup</div>
+              <p class="stage-step-desc">Set the laser power, speed, focus, and other required parameters.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge">4</div>
+              <div class="stage-step-title">Focusing &amp; Alignment</div>
+              <p class="stage-step-desc">Align and focus the laser beam correctly on the material.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge">5</div>
+              <div class="stage-step-title">Air Assist &amp; Exhaust</div>
+              <p class="stage-step-desc">Turn on the air-assist and exhaust systems.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge">6</div>
+              <div class="stage-step-title">Laser Cutting</div>
+              <p class="stage-step-desc">Start the machine; the laser follows the programmed path and cuts the material.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge">7</div>
+              <div class="stage-step-title">Inspection</div>
+              <p class="stage-step-desc">Check the cut for accuracy, quality, and completeness.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge">8</div>
+              <div class="stage-step-title">Cleaning &amp; Shutdown</div>
+              <p class="stage-step-desc">Remove the finished piece, clean the machine, and switch off the equipment safely.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: TYPES & MANUFACTURING PROCESSES -->
+        <section id="types-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 03</span>
+            <h2 class="section-title"><span class="section-title-icon">💡</span> Types of Laser Cutting &amp; Processes</h2>
+          </div>
+
+          <div class="laser-types-grid">
+            <div class="laser-type-card">
+              <div>
+                <div class="laser-card-header">
+                  <div class="laser-card-icon">🔵</div>
+                  <div>
+                    <h3 class="laser-card-title">1. Diode Laser</h3>
+                    <span class="laser-card-tag">Semiconductor</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-muted);">
+                  Uses semiconductor diodes and is commonly used for engraving and cutting wood, acrylic, leather, and other thin materials.
+                </p>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--laser-cyan); font-weight: 600;">Best for: Thin materials &amp; engraving</div>
+            </div>
+
+            <div class="laser-type-card">
+              <div>
+                <div class="laser-card-header">
+                  <div class="laser-card-icon">⚡</div>
+                  <div>
+                    <h3 class="laser-card-title">2. Fiber Laser</h3>
+                    <span class="laser-card-tag">Fiber-Optic Medium</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-muted);">
+                  Uses a fiber-optic medium and is mainly used for precise cutting and engraving of metals such as steel, aluminium, and stainless steel.
+                </p>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--laser-cyan); font-weight: 600;">Best for: Metals (Steel, Aluminium)</div>
+            </div>
+
+            <div class="laser-type-card" style="border-color: var(--laser-orange); background: rgba(255, 107, 53, 0.04);">
+              <div>
+                <div class="laser-card-header">
+                  <div class="laser-card-icon">🔴</div>
+                  <div>
+                    <h3 class="laser-card-title">3. CO₂ Laser</h3>
+                    <span class="laser-card-tag">Carbon Dioxide Gas Mixture</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-muted);">
+                  Uses a carbon dioxide gas mixture and is commonly used for cutting and engraving wood, acrylic, plastic, paper, and other non-metal materials.
+                </p>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--laser-orange); font-weight: 600;">Best for: Acrylic, Wood, Plastics, Paper</div>
+            </div>
+          </div>
+
+          <!-- Diagram Image 1 -->
+          <div class="media-container">
+            <div class="media-image-wrapper">
+              <img src="images/laser_types.png" alt="Laser Types and Manufacturing Classification Diagram" class="media-img">
+              <div class="media-overlay-badge">🔍 Click to Enlarge</div>
+            </div>
+            <div class="media-caption">
+              <span><strong>Figure 3.1:</strong> Types of Laser Cutting and Process Breakdown.</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem;">DFab Laboratory Diagram</span>
+            </div>
+          </div>
+
+          <h3 style="margin: 2rem 0 1rem; font-size: 1.25rem;">Laser Manufacturing Processes</h3>
+          <div class="processes-grid">
+            <div class="process-pill">
+              <div class="process-pill-title">✂️ 1. Laser Cutting</div>
+              <p class="process-pill-desc">Cuts materials into required shapes with high accuracy.</p>
+            </div>
+            <div class="process-pill">
+              <div class="process-pill-title">🔗 2. Laser Welding</div>
+              <p class="process-pill-desc">Joins two materials by melting them using a focused laser beam.</p>
+            </div>
+            <div class="process-pill">
+              <div class="process-pill-title">🎯 3. Laser Drilling</div>
+              <p class="process-pill-desc">Produces small and precise holes in materials.</p>
+            </div>
+            <div class="process-pill">
+              <div class="process-pill-title">🖌️ 4. Laser Engraving</div>
+              <p class="process-pill-desc">Removes or changes the surface to create designs, text, or patterns.</p>
+            </div>
+            <div class="process-pill">
+              <div class="process-pill-title">🏷️ 5. Laser Marking</div>
+              <p class="process-pill-desc">Creates permanent marks such as numbers, logos, or barcodes on a material.</p>
+            </div>
+            <div class="process-pill">
+              <div class="process-pill-title">🛡️ 6. Surface Treatment</div>
+              <p class="process-pill-desc">Modifies the surface properties of a material using laser energy.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: PROS, CONS & LIMITATIONS -->
+        <section id="pros-cons-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 04</span>
+            <h2 class="section-title"><span class="section-title-icon">⚖️</span> Advantages &amp; Limitations</h2>
+          </div>
+
+          <div class="media-grid-2">
+            <div class="card-glass" style="border-top: 3px solid var(--laser-green);">
+              <h3 style="color: var(--laser-green); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>✅</span> Advantages
+              </h3>
+              <ul class="safety-list" style="gap: 0.6rem;">
+                <li>High precision and accuracy.</li>
+                <li>Produces clean and smooth cuts.</li>
+                <li>Can cut complex shapes and designs.</li>
+                <li>Fast and efficient compared to many conventional methods.</li>
+                <li>Requires less physical contact with the material.</li>
+                <li>Produces less material wastage.</li>
+                <li>Easily controlled using CAD/CAM software.</li>
+              </ul>
+            </div>
+
+            <div class="card-glass" style="border-top: 3px solid var(--laser-red);">
+              <h3 style="color: var(--laser-red); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>⚠️</span> Disadvantages &amp; Limitations
+              </h3>
+              <ul class="safety-list" style="gap: 0.6rem;">
+                <li>High initial cost of the laser cutting machine.</li>
+                <li>Requires skilled operation and proper setup.</li>
+                <li>Generates smoke and fumes, requiring an exhaust system.</li>
+                <li>Some materials, such as PVC and certain plastics, cannot be safely cut.</li>
+                <li>High power consumption for certain applications.</li>
+                <li>Maintenance of the laser, optics, chiller, and exhaust system is required.</li>
+                <li>Limited material thickness depending on the laser type and power.</li>
+                <li>Cutting thick or highly reflective materials can be difficult and slower.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: LAB SAFETY PROTOCOLS -->
+        <section id="safety-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 05</span>
+            <h2 class="section-title"><span class="section-title-icon">🛡️</span> Lab Safety &amp; Safety Rules</h2>
+          </div>
+
+          <div class="safety-grid">
+            <div class="safety-card">
+              <div class="safety-card-header">
+                <span>👁️</span> Laser Safety
+              </div>
+              <ul class="safety-list">
+                <li>Never look directly at the laser beam.</li>
+                <li>Keep the machine cover closed during operation.</li>
+                <li>Do not disable safety interlocks.</li>
+                <li>Only trained users should operate the machine.</li>
+              </ul>
+            </div>
+
+            <div class="safety-card">
+              <div class="safety-card-header">
+                <span>💨</span> Exhaust System
+              </div>
+              <ul class="safety-list">
+                <li>Switch on the exhaust before cutting.</li>
+                <li>Ensure smoke and fumes are properly removed.</li>
+                <li>Keep the exhaust duct clean and unobstructed.</li>
+              </ul>
+            </div>
+
+            <div class="safety-card">
+              <div class="safety-card-header">
+                <span>❄️</span> Chiller Unit
+              </div>
+              <ul class="safety-list">
+                <li>Check the water level before operation.</li>
+                <li>Ensure the chiller is switched on and working properly.</li>
+                <li>Monitor the temperature and check for water leakage.</li>
+              </ul>
+            </div>
+
+            <div class="safety-card">
+              <div class="safety-card-header">
+                <span>⚡</span> Earthing &amp; Wiring
+              </div>
+              <ul class="safety-list">
+                <li>Ensure proper electrical earthing of the machine.</li>
+                <li>Check power cables and connections for damage.</li>
+                <li>Do not operate the machine with faulty wiring.</li>
+              </ul>
+            </div>
+
+            <div class="safety-card">
+              <div class="safety-card-header">
+                <span>💨</span> Air Assist
+              </div>
+              <ul class="safety-list">
+                <li>Turn on the air assist during cutting.</li>
+                <li>Helps remove smoke and debris from the cutting area.</li>
+                <li>Reduces the risk of fire.</li>
+              </ul>
+            </div>
+
+            <div class="safety-card">
+              <div class="safety-card-header">
+                <span>🧯</span> Machine Safety &amp; E-Stop
+              </div>
+              <ul class="safety-list">
+                <li>Use only laser-safe and approved materials.</li>
+                <li>Keep the cutting bed clean and free from flammable materials.</li>
+                <li>Never leave the machine unattended while operating.</li>
+                <li>Keep a fire extinguisher nearby and use emergency stop if needed.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Document Safety Image 2 -->
+          <div class="media-container">
+            <div class="media-image-wrapper">
+              <img src="images/laser_safety.png" alt="Lab Safety and Standard Operating Procedures at FORGE HW Junction DFab" class="media-img">
+              <div class="media-overlay-badge">🔍 Click to Enlarge</div>
+            </div>
+            <div class="media-caption">
+              <span><strong>Figure 5.1:</strong> Safety Rules &amp; Protocols for Laser Cutting.</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem;">DFab Laboratory Safety</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6: MACHINE DETAILS & SPECIFICATIONS -->
+        <section id="machine-specs-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 06</span>
+            <h2 class="section-title"><span class="section-title-icon">⚙️</span> Machine Details &amp; Specifications</h2>
+          </div>
+
+          <p>
+            The machine used for the activity was a <strong>1490 CO₂ laser cutter</strong> at <strong>FORGE HW Junction DFab #2</strong>.
+          </p>
+
+          <!-- Machine Dashboard Component -->
+          <div class="machine-dashboard">
+            <div class="machine-dash-header">
+              <div class="machine-name-group">
+                <h3>Model: 1490 CO₂ Laser</h3>
+                <p>📍 Make/Facility: FORGE HW Junction DFab #2 | Software: RDWorks</p>
+              </div>
+              <button class="quick-link-btn" onclick="copySettings('1490 CO2 Laser | 150W Tube | 1300x900mm Bed | 1000W Total | RDWorks', this)">📋 Copy Specs</button>
+            </div>
+
+            <div class="specs-grid">
+              <div class="spec-box">
+                <span class="spec-label">Working / Bed Area</span>
+                <span class="spec-value">1300 × 900 mm</span>
+                <span class="spec-sub">Large format cutting bed</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Laser Tube Power</span>
+                <span class="spec-value">150 W</span>
+                <span class="spec-sub">CO₂ Laser Tube</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Machine Power</span>
+                <span class="spec-value">1000 W</span>
+                <span class="spec-sub">Total Electrical Power</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Max Cutting Speed</span>
+                <span class="spec-value">25 m/min</span>
+                <span class="spec-sub">Listed cutting speed</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Max Engraving Speed</span>
+                <span class="spec-value">55 m/min</span>
+                <span class="spec-sub">Listed engraving speed</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Listed Accuracy</span>
+                <span class="spec-value">0.1 mm</span>
+                <span class="spec-sub">Precision tolerance</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Working Temperature</span>
+                <span class="spec-value">0 – 40 °C</span>
+                <span class="spec-sub">Operational range</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Blowing System</span>
+                <span class="spec-value">Lower Blowing</span>
+                <span class="spec-sub">Lower blowing system</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Single Clean Machine Photo -->
+          <div class="media-container" style="max-width: 800px; margin: 2rem auto;">
+            <div class="media-image-wrapper">
+              <img src="images/laser_machine_1490.png" alt="Laser cutting machine and its displayed specifications at FORGE HW Junction DFab #2" class="media-img">
+              <div class="media-overlay-badge">🔍 Click to Enlarge</div>
+            </div>
+            <div class="media-caption">
+              <span><strong>Figure 6.1:</strong> Laser cutting machine and its displayed specifications.</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem;">FORGE HW Junction DFab #2</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 7: MATERIALS USED -->
+        <section id="materials-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 07</span>
+            <h2 class="section-title"><span class="section-title-icon">📦</span> Materials Used</h2>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Material Type</strong></td>
+                  <td><span style="color: var(--laser-orange); font-weight: 700;">Acrylic Transparent</span> (Acrylic - 2 Transparent)</td>
+                </tr>
+                <tr>
+                  <td><strong>Thickness</strong></td>
+                  <td><code>2.0 mm</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Source</strong></td>
+                  <td>Fabrication laboratory material</td>
+                </tr>
+                <tr>
+                  <td><strong>Application</strong></td>
+                  <td>Laser cutting/scanning of a phoenix image with text <strong>“PRANETHA”</strong> and a lion image with wordings <strong>“UNSTOPPABLE”</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 8: SELECTED DESIGN AND IMAGE -->
+        <section id="design-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 08</span>
+            <h2 class="section-title"><span class="section-title-icon">🎨</span> Selected Design and Image</h2>
+          </div>
+
+          <!-- Project 1: Phoenix Bird -->
+          <div style="margin-bottom: 3rem;">
+            <div class="card-glass card-laser-glow">
+              <h3 style="margin-bottom: 0.75rem; color: var(--laser-orange); font-size: 1.3rem;">1. The Mythological Phoenix (Text: "PRANETHA")</h3>
+              <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 0;">
+                <em>"Firstly I selected an image of Phoenix bird from a mythology serving as a magnificent bird which burns in the flames of sun and born a new from its own ashes. I was closely connected with it as it symbolises rising after every failure. Along with the image of the bird I engraved my own name too."</em>
+              </p>
+            </div>
+
+            <!-- Phoenix 3 Images Progression -->
+            <div class="media-grid-3">
+              <!-- 1. Pinterest Inspiration (images/phoenix_inspiration.png) -->
+              <div class="media-container">
+                <div class="media-image-wrapper">
+                  <img src="images/phoenix_inspiration.png" alt="Pinterest inspiration for bird" class="media-img">
+                  <div class="media-overlay-badge">Inspiration</div>
+                </div>
+                <div class="media-caption">
+                  <span><strong>1. Pinterest Inspiration for Bird</strong></span>
+                </div>
+              </div>
+
+              <!-- 2. Vectorization & Typography (images/phoenix_vector.png) -->
+              <div class="media-container">
+                <div class="media-image-wrapper">
+                  <img src="images/phoenix_vector.png" alt="Vector Phoenix with PRANETHA Text" class="media-img">
+                  <div class="media-overlay-badge">Vector / Typography</div>
+                </div>
+                <div class="media-caption">
+                  <span><strong>2. Vectorization &amp; Name "PRANETHA"</strong></span>
+                </div>
+              </div>
+
+              <!-- 3. Final Vector Topology (images/phoenix_topology.jpg) -->
+              <div class="media-container">
+                <div class="media-image-wrapper">
+                  <img src="images/phoenix_topology.jpg" alt="Final vector topology for bird" class="media-img">
+                  <div class="media-overlay-badge">Final Topology</div>
+                </div>
+                <div class="media-caption">
+                  <span><strong>3. Final Vector Topology</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Lion -->
+          <div style="margin-top: 2.5rem;">
+            <div class="card-glass card-cyan-glow">
+              <h3 style="margin-bottom: 0.75rem; color: var(--laser-cyan); font-size: 1.3rem;">2. The Alpha Lion (Wordings: "UNSTOPPABLE")</h3>
+              <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 0;">
+                <em>"Secondly I selected an image of a lion which symbolises confidence and attitude. Along with the image I engraved the word <strong>“Unstoppable”</strong>."</em>
+              </p>
+            </div>
+
+            <!-- Lion 3 Images Progression -->
+            <div class="media-grid-3">
+              <!-- 1. Pinterest Inspiration (images/lion_inspiration.jpg) -->
+              <div class="media-container">
+                <div class="media-image-wrapper">
+                  <img src="images/lion_inspiration.jpg" alt="Pinterest Inspiration for Lion" class="media-img">
+                  <div class="media-overlay-badge">Inspiration</div>
+                </div>
+                <div class="media-caption">
+                  <span><strong>1. Pinterest Inspiration for Lion</strong></span>
+                </div>
+              </div>
+
+              <!-- 2. Vectorization & Typography (images/lion_vector.png) -->
+              <div class="media-container">
+                <div class="media-image-wrapper">
+                  <img src="images/lion_vector.png" alt="Vectorized Lion with UNSTOPPABLE Text" class="media-img">
+                  <div class="media-overlay-badge">Vector / Typography</div>
+                </div>
+                <div class="media-caption">
+                  <span><strong>2. Vectorization &amp; Word "UNSTOPPABLE"</strong></span>
+                </div>
+              </div>
+
+              <!-- 3. Final Vector Topology (images/lion_topology.png) -->
+              <div class="media-container">
+                <div class="media-image-wrapper">
+                  <img src="images/lion_topology.png" alt="Final Vector Topology for Lion" class="media-img">
+                  <div class="media-overlay-badge">Final Topology</div>
+                </div>
+                <div class="media-caption">
+                  <span><strong>3. Final Vector Topology</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 9: IMAGE TO DXF & FILE PREPARATION -->
+        <section id="file-prep-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 09</span>
+            <h2 class="section-title"><span class="section-title-icon">📐</span> Image to DXF &amp; File Preparation</h2>
+          </div>
+
+          <p>
+            After conversion, the DXF design was opened in RDWorks and prepared for the laser cutter. The imported geometry was checked before assigning the processing layers. The design was also saved as an AI file for source-file submission.
+          </p>
+
+          <div class="card-glass" style="margin: 1.5rem 0;">
+            <h4 style="color: var(--laser-cyan); margin-bottom: 0.75rem;">Software / Tool: Convertio</h4>
+            <p style="margin-bottom: 0.5rem; font-weight: 600;">Important steps &amp; Conversion:</p>
+            <ol style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.95rem;">
+              <li>Select image from Pinterest</li>
+              <li>Upload to Convertio</li>
+              <li>Select DXF output</li>
+              <li>Download DXF</li>
+              <li>Open in RDWorks</li>
+              <li>Check geometry</li>
+            </ol>
+          </div>
+
+          <!-- Document Image 11 -->
+          <div class="media-container">
+            <div class="media-image-wrapper">
+              <img src="images/rdworks_conversion.png" alt="Image to DXF Conversion Workflow via Convertio" class="media-img">
+              <div class="media-overlay-badge">🔍 Click to Enlarge</div>
+            </div>
+            <div class="media-caption">
+              <span><strong>Figure 9.1:</strong> Image to DXF Conversion in RDWorks.</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem;">Step 1–6</span>
+            </div>
+          </div>
+
+          <h3 style="margin: 2rem 0 1rem; font-size: 1.25rem;">File Preparation Steps:</h3>
+          <ul class="safety-list" style="margin-bottom: 1.5rem;">
+            <li>Imported the converted DXF into RDWorks.</li>
+            <li>Checked the imported phoenix and lion image and text geometry.</li>
+            <li>Prepared the geometry (50mm x 50mm) for the required laser operations (vector cleaning, scaling, closed paths).</li>
+            <li>Assigned the design to the required RDWorks processing layers.</li>
+            <li>Used black for the cutting operation and blue for the scanning/engraving operation.</li>
+            <li>Saved the prepared design as an AI file in addition to retaining the DXF source.</li>
+          </ul>
+
+          <!-- Document Image 12 -->
+          <div class="media-container">
+            <div class="media-image-wrapper">
+              <img src="images/rdworks_geometry.png" alt="Prepared geometry before final machine processing" class="media-img">
+              <div class="media-overlay-badge">🔍 Click to Enlarge</div>
+            </div>
+            <div class="media-caption">
+              <span><strong>Figure 9.2:</strong> Prepared geometry before final machine processing (50mm x 50mm).</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem;">RDWorks Geometry</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 10: NESTING & LAYOUT IN RDWORKS -->
+        <section id="rdworks-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 10</span>
+            <h2 class="section-title"><span class="section-title-icon">🎛️</span> Nesting &amp; Layout in RDWorks</h2>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>RDWorks Item</th>
+                  <th>Recorded Information</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Design Placement</strong></td>
+                  <td>Phoenix positioned above the "Pranetha" text and lion image positioned above “Unstoppable” text</td>
+                </tr>
+                <tr>
+                  <td><strong>Cutting Layer</strong></td>
+                  <td><span class="badge-layer-black">⬛ Black Layer (Cut)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Scanning / Engraving Layer</strong></td>
+                  <td><span class="badge-layer-blue">🟦 Blue Layer (Scan)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Material Layout</strong></td>
+                  <td>Acrylic - 2, Transparent</td>
+                </tr>
+                <tr>
+                  <td><strong>Previewed Design Size</strong></td>
+                  <td><code>50mm × 50mm</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Previewed Total Time</strong></td>
+                  <td><code>0.00.20.048 (20.05s)</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Previewed Light Time</strong></td>
+                  <td><code>0.00.11.139 (11.14s)</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="media-grid-3">
+            <div class="media-container">
+              <div class="media-image-wrapper">
+                <img src="images/rdworks_nesting.png" alt="RDWorks Nesting and Design Placement" class="media-img">
+                <div class="media-overlay-badge">Nesting</div>
+              </div>
+              <div class="media-caption">
+                <span><strong>Figure 10.1:</strong> Design Placement</span>
+              </div>
+            </div>
+
+            <div class="media-container">
+              <div class="media-image-wrapper">
+                <img src="images/rdworks_layers.png" alt="RDWorks Layer Assignment (Black Cut / Blue Scan)" class="media-img">
+                <div class="media-overlay-badge">Layers</div>
+              </div>
+              <div class="media-caption">
+                <span><strong>Figure 10.2:</strong> Layer Assignment</span>
+              </div>
+            </div>
+
+            <div class="media-container">
+              <div class="media-image-wrapper">
+                <img src="images/rdworks_simulation.png" alt="RDWorks Time and Simulation Preview" class="media-img">
+                <div class="media-overlay-badge">Simulation</div>
+              </div>
+              <div class="media-caption">
+                <span><strong>Figure 10.3:</strong> Time Preview (20.048s)</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 11: FINAL MACHINE SETTINGS & CUTTING PROCESS -->
+        <section id="settings-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 11</span>
+            <h2 class="section-title"><span class="section-title-icon">⚡</span> Final Machine Settings &amp; Execution</h2>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Material</th>
+                  <th>Thickness</th>
+                  <th>Operation</th>
+                  <th>Speed</th>
+                  <th>Min Power</th>
+                  <th>Max Power</th>
+                  <th>Passes</th>
+                  <th>Frequency</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Acrylic - 2 Transparent</strong></td>
+                  <td><code>2.0mm</code></td>
+                  <td><span class="badge-layer-black">⬛ Laser Cut</span></td>
+                  <td><strong>100 mm/s</strong></td>
+                  <td>30%</td>
+                  <td>30%</td>
+                  <td>1</td>
+                  <td>20,000 Hz</td>
+                </tr>
+                <tr>
+                  <td><strong>Acrylic - 2 Transparent</strong></td>
+                  <td><code>2.0mm</code></td>
+                  <td><span class="badge-layer-blue">🟦 Laser Scan</span></td>
+                  <td><strong>100 mm/s</strong></td>
+                  <td>30%</td>
+                  <td>30%</td>
+                  <td>1</td>
+                  <td>20,000 Hz</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 style="margin: 2rem 0 1rem; font-size: 1.25rem;">Cutting Process:</h3>
+          <p>
+            The prepared file was loaded into RDWorks and the laser cutter was operated with the required safety systems active. The transparent acrylic sheet was positioned on the machine bed, the design was processed, and the emblems and text were produced.
+          </p>
+          <ol style="padding-left: 1.5rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <li>Position acrylic sheet on cutting bed</li>
+            <li>Load design in RDWorks</li>
+            <li>Verify position &amp; layers</li>
+            <li>Check safety systems (exhaust, chiller, air assist)</li>
+            <li>Run operation</li>
+            <li>Inspect &amp; remove finished piece</li>
+          </ol>
+
+          <!-- Machine Setup & Cutting In-Action Images -->
+          <div class="media-grid-2">
+            <div class="media-container">
+              <div class="media-image-wrapper">
+                <img src="images/laser_bed_setup.jpg" alt="Setting the operation on the 1490 CO2 Laser" class="media-img">
+                <div class="media-overlay-badge">🔍 Click to Enlarge</div>
+              </div>
+              <div class="media-caption">
+                <span><strong>Figure 11.1:</strong> 1. Setting the operation.</span>
+                <span style="font-family: var(--font-mono); font-size: 0.75rem;">Machine Setup</span>
+              </div>
+            </div>
+
+            <div class="media-container">
+              <div class="media-image-wrapper">
+                <img src="images/laser_in_action.jpg" alt="Laser cutting process in action" class="media-img">
+                <div class="media-overlay-badge">🔍 Click to Enlarge</div>
+              </div>
+              <div class="media-caption">
+                <span><strong>Figure 11.2:</strong> 2. Laser cutting process.</span>
+                <span style="font-family: var(--font-mono); font-size: 0.75rem;">Laser in Action</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 12: INTERACTIVE LASER DYNAMICS SIMULATOR -->
+        <section id="calc-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 12</span>
+            <h2 class="section-title"><span class="section-title-icon">🎛️</span> Laser Cutting Parameter Calculator</h2>
+          </div>
+
+          <div class="calc-card">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+              <div>
+                <h3 style="font-size: 1.3rem; color: #fff;">150W CO₂ Power &amp; Speed Dynamics</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">Calculate linear energy density and estimated cycle times for Transparent Acrylic.</p>
+              </div>
+              <span class="badge badge-tech">Interactive Simulation</span>
+            </div>
+
+            <div class="calc-grid">
+              <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <div class="range-control">
+                  <div class="range-header">
+                    <span>Laser Tube Power (%)</span>
+                    <span id="calcPowerVal" style="color: var(--laser-orange); font-family: var(--font-mono);">30% (45.0W)</span>
+                  </div>
+                  <input type="range" id="calcPower" class="custom-range" min="10" max="90" value="30" step="1">
+                </div>
+
+                <div class="range-control">
+                  <div class="range-header">
+                    <span>Gantry Feed Speed (mm/s)</span>
+                    <span id="calcSpeedVal" style="color: var(--laser-cyan); font-family: var(--font-mono);">100 mm/s</span>
+                  </div>
+                  <input type="range" id="calcSpeed" class="custom-range" min="10" max="300" value="100" step="5">
+                </div>
+
+                <div class="range-control">
+                  <div class="range-header">
+                    <span>Material Substrate</span>
+                  </div>
+                  <select id="calcThickness" style="background: var(--bg-tertiary); color: var(--text-main); border: 1px solid var(--border-subtle); padding: 0.5rem; border-radius: var(--radius-sm); font-family: var(--font-mono); outline: none;">
+                    <option value="2.0">2.0 mm Acrylic Transparent (Experiment Material)</option>
+                    <option value="3.0">3.0 mm Acrylic Transparent</option>
+                    <option value="5.0">5.0 mm Acrylic Transparent</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="calc-results-box">
+                <div>
+                  <span class="spec-label">Linear Energy Density</span>
+                  <div id="calcEnergyDensity" style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 800; color: var(--laser-cyan);">0.45 J/mm</div>
+                </div>
+                <div>
+                  <span class="spec-label">Estimated 50mm Token Time</span>
+                  <div id="calcEstTime" style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 800; color: var(--laser-orange);">~20.0 s</div>
+                </div>
+                <div style="margin-top: 0.5rem;">
+                  <span class="spec-label">Thermal Cut Evaluation</span>
+                  <div id="calcStatusBadge" style="font-size: 0.9rem; font-weight: 700; color: #10b981; border: 1px solid #10b981; padding: 0.35rem 0.75rem; border-radius: var(--radius-sm); display: inline-block; margin-top: 0.25rem;">
+                    ⚡ Optimal Settings (Clean Flame Polish)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 13: FINAL RESULT SHOWCASE -->
+        <section id="results-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 13</span>
+            <h2 class="section-title"><span class="section-title-icon">✨</span> Final Result</h2>
+          </div>
+
+          <p>
+            The final physical outcomes on 2.0mm transparent acrylic substrate after the laser cutting and scanning process:
+          </p>
+
+          <!-- Final Results Side-by-Side -->
+          <div class="media-grid-2">
+            <div class="media-container" style="border: 2px solid rgba(255, 107, 53, 0.4);">
+              <div class="media-image-wrapper">
+                <img src="images/phoenix_final.png" alt="Phoenix on Acrylic 2 Transparent" class="media-img">
+                <div class="media-overlay-badge">⭐ Physical Result</div>
+              </div>
+              <div class="media-caption">
+                <div>
+                  <strong style="color: var(--laser-orange);">Phoenix on Acrylic 2 Transparent</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Engraved with name "PRANETHA"</div>
+                </div>
+                <span class="badge badge-laser">Complete</span>
+              </div>
+            </div>
+
+            <div class="media-container" style="border: 2px solid rgba(0, 242, 254, 0.4);">
+              <div class="media-image-wrapper">
+                <img src="images/lion_final.jpg" alt="Lion on Acrylic 2 Transparent" class="media-img">
+                <div class="media-overlay-badge">⭐ Physical Result</div>
+              </div>
+              <div class="media-caption">
+                <div>
+                  <strong style="color: var(--laser-cyan);">Lion on Acrylic 2 Transparent</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Engraved with word "UNSTOPPABLE"</div>
+                </div>
+                <span class="badge badge-tech">Complete</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 14: PROBLEMS FACED AND SOLUTIONS & REFLECTION -->
+        <section id="reflection-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 14</span>
+            <h2 class="section-title"><span class="section-title-icon">💡</span> Problems Faced, Solutions &amp; Reflection</h2>
+          </div>
+
+          <!-- Problem Card -->
+          <div class="problem-card">
+            <div class="problem-header">
+              <span>⚠️</span> Problems Faced and Solutions
+            </div>
+            
+            <div class="problem-detail-item">
+              <span class="problem-tag cause">Problem:</span>
+              <p style="margin-bottom: 0.5rem; font-size: 0.95rem;">
+                I faced challenges in setting the colour for laser scan and laser cut and quite confused about the design output regarding which part will be engraved and cut.
+              </p>
+            </div>
+
+            <div class="problem-detail-item">
+              <span class="problem-tag cause">Problem Cause:</span>
+              <p style="margin-bottom: 0.5rem; font-size: 0.95rem;">
+                I wasn’t sure about how to change the colour setting of work and operation.
+              </p>
+            </div>
+
+            <div class="problem-detail-item">
+              <span class="problem-tag solution">Solution Implemented:</span>
+              <p style="margin-bottom: 0.5rem; font-size: 0.95rem;">
+                I previewed my design to get a better clarity on which parts will be engraved and cut which helped me to choose the appropriate colours for the operation.
+              </p>
+            </div>
+
+            <div class="problem-detail-item">
+              <span class="problem-tag outcome">Final Outcome:</span>
+              <p style="margin-bottom: 0; font-size: 0.95rem;">
+                In the end of the laser cutting process the output was in the expected form and design.
+              </p>
+            </div>
+          </div>
+
+          <!-- Personal Reflection Callout Quote -->
+          <div class="reflection-quote">
+            <h4 style="font-style: normal; color: var(--laser-cyan); margin-bottom: 0.75rem; font-size: 1.15rem;">Reflection:</h4>
+            <p style="margin-bottom: 0.75rem;">
+              "The activity gave me a detailed view about the steps involved in laser cutting that has to be performed with utmost care and responsibility. It all starts from choosing the image, converting it into the desired file format, adjusting the dimensions and geometry, previewing the output and finally operating the laser cutting machine."
+            </p>
+            <p style="margin-bottom: 0;">
+              "Even though I faced a lot of challenges in the modifying the dimensions of my first design I was able to understand the process clearly which made me to design and work in a much more efficient way for my second image without any flaws. To be honest I felt stuck in the beginning but in the end I learnt and experienced something new and that’s what is required."
+            </p>
+            <div style="margin-top: 1rem; font-style: normal; font-weight: 700; color: var(--laser-orange); font-size: 0.9rem;">
+              — Pranetha
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 15: SOURCE FILES -->
+        <section id="files-laser" class="content-section">
+          <div class="section-header">
+            <span class="section-num">Laser Cutting // Section 15</span>
+            <h2 class="section-title"><span class="section-title-icon">💾</span> Source Files</h2>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>File Format</th>
+                  <th>Phoenix ("PRANETHA")</th>
+                  <th>Lion ("UNSTOPPABLE")</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>DXF (AutoCAD Drawing Exchange)</strong></td>
+                  <td><button class="quick-link-btn" onclick="alert('Downloading Phoenix DXF');">📥 DXF File</button></td>
+                  <td><button class="quick-link-btn" onclick="alert('Downloading Lion DXF');">📥 DXF File</button></td>
+                </tr>
+                <tr>
+                  <td><strong>AI (Adobe Illustrator Source)</strong></td>
+                  <td><button class="quick-link-btn" onclick="alert('Opening Phoenix AI Link');">🔗 AI Link</button></td>
+                  <td><button class="quick-link-btn" onclick="alert('Opening Lion AI Link');">🔗 AI Link</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Bottom Switcher Banner -->
+        <div class="switch-banner">
+          <div class="switch-banner-text">
+            <h3>Ready to explore 3D Printing?</h3>
+            <p>Dive into FDM additive manufacturing, STL mesh geometry, and Bambu Studio slicing on the Bambu Lab H2S.</p>
+          </div>
+          <button class="hero-switch-btn print-mode switch-to-print">
+            <span>🖨️</span> <span>Open 3D Printing Module</span>
+          </button>
+        </div>
+
+      </div>
+
+
+      <!-- ===================================================================
+           MODULE 2: 3D PRINTING (OPENS ON CLICKING 3D PRINTING BUTTON)
+           =================================================================== -->
+      <div id="module-3d" class="module-view">
+        
+        <!-- SECTION 1: WHAT IS 3D PRINTING -->
+        <section id="what-is-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 01</span>
+            <h2 class="section-title"><span class="section-title-icon">🖨️</span> What is 3D Printing?</h2>
+          </div>
+
+          <div class="card-glass card-3d-glow">
+            <p>
+              <strong>3D printing</strong> (Additive Manufacturing) is a manufacturing process that creates a three-dimensional object layer by layer directly from a digital CAD design.
+            </p>
+            <p>
+              The design is created using 3D modeling software, converted to numerical slices, and sent to the 3D printer. The printer deposits or solidifies material slice by slice until the complete physical geometry is formed.
+            </p>
+            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              <span class="badge badge-tech">PLA</span>
+              <span class="badge badge-tech">ABS</span>
+              <span class="badge badge-tech">PETG</span>
+              <span class="badge badge-tech">Resin (SLA/DLP)</span>
+              <span class="badge badge-tech">Nylon / SLS</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: STAGES OF 3D PRINTING -->
+        <section id="stages-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 02</span>
+            <h2 class="section-title"><span class="section-title-icon">🔄</span> Stages of 3D Printing</h2>
+          </div>
+
+          <div class="stages-timeline">
+            <div class="stage-step-card active">
+              <div class="stage-badge badge-blue">1</div>
+              <div class="stage-step-title">Design</div>
+              <p class="stage-step-desc">Create the 3D digital model using CAD or sculpt tools.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge badge-blue">2</div>
+              <div class="stage-step-title">Slicing</div>
+              <p class="stage-step-desc">Convert the model into printable horizontal layers &amp; G-code.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge badge-blue">3</div>
+              <div class="stage-step-title">Setup</div>
+              <p class="stage-step-desc">Load filament/resin, calibrate bed leveling &amp; preheat nozzle.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge badge-blue">4</div>
+              <div class="stage-step-title">Printing</div>
+              <p class="stage-step-desc">The machine builds the object layer by layer.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge badge-blue">5</div>
+              <div class="stage-step-title">Post-Processing</div>
+              <p class="stage-step-desc">Remove tree supports, clean brim, wash/cure, and finish.</p>
+            </div>
+
+            <div class="stage-step-card">
+              <div class="stage-badge badge-blue">6</div>
+              <div class="stage-step-title">Inspection</div>
+              <p class="stage-step-desc">Check dimensional tolerance and articulated joint motion.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: TYPES OF 3D PRINTING -->
+        <section id="types-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 03</span>
+            <h2 class="section-title"><span class="section-title-icon">💡</span> Types of 3D Printing</h2>
+          </div>
+
+          <div class="laser-types-grid">
+            
+            <!-- 1. FDM -->
+            <div class="laser-type-card" style="border-color: var(--laser-blue);">
+              <div>
+                <div class="laser-card-header">
+                  <div class="laser-card-icon">🧵</div>
+                  <div>
+                    <h3 class="laser-card-title">1. FDM</h3>
+                    <span class="laser-card-tag">Fused Deposition Modeling</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-muted);">
+                  Uses a heated nozzle to melt thermoplastic filament and deposits it layer by layer. Widely used for prototypes, models, and educational projects.
+                </p>
+                <div class="media-container" style="margin: 0.75rem 0;">
+                  <div class="media-image-wrapper">
+                    <img src="images/3d_fdm.png" alt="FDM 3D Printing Diagram" class="media-img">
+                  </div>
+                </div>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--laser-cyan); font-weight: 600;">Technology: Material Extrusion (PLA, ABS)</div>
+            </div>
+
+            <!-- 2. SLA -->
+            <div class="laser-type-card">
+              <div>
+                <div class="laser-card-header">
+                  <div class="laser-card-icon">💧</div>
+                  <div>
+                    <h3 class="laser-card-title">2. SLA</h3>
+                    <span class="laser-card-tag">Stereolithography</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-muted);">
+                  Uses a UV laser beam to selectively cure liquid photopolymer resin layer by layer into solid plastic. Produces ultra-high detail and smooth parts.
+                </p>
+                <div class="media-container" style="margin: 0.75rem 0;">
+                  <div class="media-image-wrapper">
+                    <img src="images/3d_sla.png" alt="SLA 3D Printing Diagram" class="media-img">
+                  </div>
+                </div>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--laser-cyan); font-weight: 600;">Technology: Vat Photopolymerization</div>
+            </div>
+
+            <!-- 3. DLP -->
+            <div class="laser-type-card">
+              <div>
+                <div class="laser-card-header">
+                  <div class="laser-card-icon">📽️</div>
+                  <div>
+                    <h3 class="laser-card-title">3. DLP</h3>
+                    <span class="laser-card-tag">Digital Light Processing</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-muted);">
+                  Uses a digital projector screen to cure an entire layer of liquid resin simultaneously. Delivers high resolution and faster print speeds than point-by-point SLA.
+                </p>
+                <div class="media-container" style="margin: 0.75rem 0;">
+                  <div class="media-image-wrapper">
+                    <img src="images/3d_dlp.png" alt="DLP 3D Printing Diagram" class="media-img">
+                  </div>
+                </div>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--laser-cyan); font-weight: 600;">Technology: Masked Projection Photopolymer</div>
+            </div>
+
+            <!-- 4. SLS -->
+            <div class="laser-type-card">
+              <div>
+                <div class="laser-card-header">
+                  <div class="laser-card-icon">✨</div>
+                  <div>
+                    <h3 class="laser-card-title">4. SLS</h3>
+                    <span class="laser-card-tag">Selective Laser Sintering</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--text-muted);">
+                  Uses a high-power laser to fuse powdered polymer (e.g. Nylon PA12) layer by layer. Creates strong, functional, and self-supporting complex parts without sacrificial supports.
+                </p>
+                <div class="media-container" style="margin: 0.75rem 0;">
+                  <div class="media-image-wrapper">
+                    <img src="images/3d_sls.png" alt="SLS 3D Printing Diagram" class="media-img">
+                  </div>
+                </div>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--laser-cyan); font-weight: 600;">Technology: Powder Bed Fusion (Nylon)</div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION 4: MANUFACTURING PROCESS OF 3D PRINTING -->
+        <section id="process-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 04</span>
+            <h2 class="section-title"><span class="section-title-icon">⚙️</span> Manufacturing Process of 3D Printing</h2>
+          </div>
+
+          <div class="media-grid-2">
+            
+            <!-- Step 1: CAD & Slicing -->
+            <div class="card-glass">
+              <h3 style="color: var(--laser-cyan); margin-bottom: 0.5rem;">1. Digital Preparation (CAD &amp; Slicing)</h3>
+              <p><strong>CAD Design:</strong> Create the 3D model in specialized design software.</p>
+              <p><strong>Export &amp; Slicing:</strong> Export as an STL/3MF file and slice it into layers to generate machine-readable G-code commands.</p>
+              <div class="media-container">
+                <div class="media-image-wrapper">
+                  <img src="images/3d_cad_slicing.png" alt="CAD and Slicing Preparation" class="media-img">
+                  <div class="media-overlay-badge">CAD / Slicer</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Machine Setup -->
+            <div class="card-glass">
+              <h3 style="color: var(--laser-cyan); margin-bottom: 0.5rem;">2. Machine Setup</h3>
+              <p><strong>Load Material:</strong> Insert thermoplastic filament, liquid photopolymer resin, or metal/polymer powder.</p>
+              <p><strong>Calibrate Platform:</strong> Level the build platform and preheat the print bed and nozzle to target operating temperatures.</p>
+              <div class="media-container">
+                <div class="media-image-wrapper">
+                  <img src="images/3d_machine_setup.png" alt="Machine Setup and Platform Calibration" class="media-img">
+                  <div class="media-overlay-badge">Machine Calibration</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Layer Deposition -->
+            <div class="card-glass">
+              <h3 style="color: var(--laser-cyan); margin-bottom: 0.5rem;">3. Printing (Layer Deposition)</h3>
+              <p>The machine builds the part slice-by-slice through FDM (extrusion), SLA (UV resin curing), SLS (polymer sintering), or SLM (metal melting).</p>
+              <div class="media-container">
+                <div class="media-image-wrapper">
+                  <img src="images/3d_layer_deposition.png" alt="3D Printing Layer Deposition" class="media-img">
+                  <div class="media-overlay-badge">Deposition Execution</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Post-Processing -->
+            <div class="card-glass">
+              <h3 style="color: var(--laser-cyan); margin-bottom: 0.5rem;">4. Post-Processing</h3>
+              <p><strong>Part &amp; Support Removal:</strong> Detach part from build plate; break off or dissolve support geometry.</p>
+              <p><strong>Clean &amp; Surface Finishing:</strong> Wash and UV-cure resin parts; sand, polish, vapor-smooth, or heat-treat for final quality.</p>
+              <div class="media-container">
+                <div class="media-image-wrapper">
+                  <img src="images/3d_post_processing.png" alt="3D Printing Post-Processing" class="media-img">
+                  <div class="media-overlay-badge">Post-Processing</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION 5: PROS, CONS & LIMITATIONS OF 3D PRINTING -->
+        <section id="pros-cons-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 05</span>
+            <h2 class="section-title"><span class="section-title-icon">⚖️</span> Advantages, Disadvantages &amp; Limitations</h2>
+          </div>
+
+          <!-- Diagram Image -->
+          <div class="media-container" style="max-width: 800px; margin: 1.5rem auto;">
+            <div class="media-image-wrapper">
+              <img src="images/3d_pros_cons.png" alt="3D Printing Advantages and Limitations Overview" class="media-img">
+              <div class="media-overlay-badge">🔍 Click to Enlarge</div>
+            </div>
+            <div class="media-caption">
+              <span><strong>Figure 5.1:</strong> Key Trade-offs in Additive Manufacturing.</span>
+            </div>
+          </div>
+
+          <div class="media-grid-2">
+            <div class="card-glass" style="border-top: 3px solid var(--laser-green);">
+              <h3 style="color: var(--laser-green); margin-bottom: 1rem;">✅ Key Advantages of 3D Printing</h3>
+              <ul class="safety-list" style="gap: 0.6rem;">
+                <li><strong>Rapid Prototyping &amp; Speed:</strong> Turn digital CAD models into physical parts in hours rather than weeks, accelerating product cycles.</li>
+                <li><strong>Design Freedom &amp; Complexity:</strong> Print intricate geometries, organic shapes, internal channels, and lattice structures impossible with CNC.</li>
+                <li><strong>Zero Tooling (Low Initial Investment):</strong> No molds or dies required—extremely cost-effective for single parts and custom runs.</li>
+                <li><strong>On-Demand &amp; Customization:</strong> Easily personalize each item without extra setup cost (medical implants, dental, consumer products).</li>
+                <li><strong>Minimal Material Waste:</strong> Additive layer-by-layer deposition uses only the required material, reducing scrap.</li>
+                <li><strong>Supply Chain Efficiency:</strong> Digital inventory allows models to be stored in the cloud and printed locally on demand.</li>
+              </ul>
+            </div>
+
+            <div class="card-glass" style="border-top: 3px solid var(--laser-red);">
+              <h3 style="color: var(--laser-red); margin-bottom: 1rem;">⚠️ Disadvantages &amp; Limitations</h3>
+              <ul class="safety-list" style="gap: 0.6rem;">
+                <li><strong>High Cost at Scale:</strong> Inefficient and expensive for mass manufacturing compared to injection molding due to static unit costs.</li>
+                <li><strong>Slow Production Speeds:</strong> Fabrication takes hours per part, creating bottlenecks for high-volume output.</li>
+                <li><strong>Anisotropic Mechanical Weakness:</strong> Parts are built layer-by-layer, making them weaker along the vertical <strong>Z-axis</strong> bond lines.</li>
+                <li><strong>Build Size Limitations:</strong> Physical chamber volume strictly caps maximum single-part dimensions.</li>
+                <li><strong>Extensive Post-Processing:</strong> Requires manual support removal, sanding, chemical washing, or UV curing.</li>
+                <li><strong>Restricted Material Selection:</strong> Fewer choices compared to traditional machining; specialized resins/powders are costly.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6: PRINTER DETAILS -->
+        <section id="printer-specs-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 06</span>
+            <h2 class="section-title"><span class="section-title-icon">🖨️</span> Laboratory 3D Printer Details</h2>
+          </div>
+
+          <div class="machine-dashboard">
+            <div class="machine-dash-header">
+              <div class="machine-name-group">
+                <h3>Make: Bambu Lab | Model: H2S</h3>
+                <p>📍 Location: FORGE HW Junction DFab #2 | Slicer: Bambu Studio</p>
+              </div>
+              <button class="quick-link-btn" onclick="copySettings('Bambu Lab H2S | 340x320x340mm | 0.4mm Nozzle | FDM | PLA', this)">📋 Copy Profile</button>
+            </div>
+
+            <div class="specs-grid">
+              <div class="spec-box">
+                <span class="spec-label">Make &amp; Brand</span>
+                <span class="spec-value cyan">Bambu Lab</span>
+                <span class="spec-sub">High-speed precision printer</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Model</span>
+                <span class="spec-value cyan">H2S</span>
+                <span class="spec-sub">Industrial FDM workstation</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Build Volume</span>
+                <span class="spec-value">340 × 320 × 340 mm³</span>
+                <span class="spec-sub">Manufacturer specification</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Nozzle Size Used</span>
+                <span class="spec-value">0.4 mm</span>
+                <span class="spec-sub">Standard brass/hardened nozzle</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Printing Technology</span>
+                <span class="spec-value">FDM</span>
+                <span class="spec-sub">Fused Deposition Modeling</span>
+              </div>
+
+              <div class="spec-box">
+                <span class="spec-label">Material Used</span>
+                <span class="spec-value">White PLA</span>
+                <span class="spec-sub">Polylactic Acid Filament</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bambu Lab Printer Photo -->
+          <div class="media-container" style="max-width: 800px; margin: 2rem auto;">
+            <div class="media-image-wrapper">
+              <img src="images/3d_bambu_printer.png" alt="Bambu Lab H2S 3D printer used for activity in the laboratory" class="media-img">
+              <div class="media-overlay-badge">🔍 Click to Enlarge</div>
+            </div>
+            <div class="media-caption">
+              <span><strong>Figure 6.1:</strong> Bambu Lab H2S 3D printer used for activity at FORGE HW Junction DFab #2.</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem;">DFab Laboratory</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 7: SLICER & MATERIAL -->
+        <section id="slicer-mat-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 07</span>
+            <h2 class="section-title"><span class="section-title-icon">📦</span> Slicer &amp; Material</h2>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Slicer / Software</strong></td>
+                  <td><span style="color: var(--laser-cyan); font-weight: 700;">Bambu Studio</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Printer Profile</strong></td>
+                  <td>Bambu Lab H2S (0.20mm Standard Profile)</td>
+                </tr>
+                <tr>
+                  <td><strong>Nozzle Diameter</strong></td>
+                  <td><code>0.4 mm</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Material</strong></td>
+                  <td><span style="color: var(--laser-orange); font-weight: 700;">White PLA filament</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Model Format</strong></td>
+                  <td><code>STL (Standard Triangle Language)</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Model Source</strong></td>
+                  <td>Printables Repository</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 8: PRINTER LIMITS & CAPABILITIES -->
+        <section id="capabilities-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 08</span>
+            <h2 class="section-title"><span class="section-title-icon">🎯</span> Printer Limits &amp; Capabilities</h2>
+          </div>
+
+          <div class="card-glass card-3d-glow">
+            <p>
+              The practical laboratory test demonstrated that the Bambu Lab H2S could produce an articulated model with multiple small, connected geometric features. Slicing required careful part orientation, and auto-generated tree supports were enabled in the supplied setup. The 0.4 mm nozzle provided the basis for producing repeated articulated details while maintaining practical print times.
+            </p>
+            <h4 style="margin: 1rem 0 0.5rem; color: var(--laser-cyan);">Capabilities &amp; Limitations Demonstrated:</h4>
+            <ul class="safety-list">
+              <li><strong>Capability:</strong> Printing complex articulated objects as a unified functional physical prototype.</li>
+              <li><strong>Capability:</strong> Accurately handling curved and repeated geometric interlocking joints.</li>
+              <li><strong>Capability:</strong> Utilizing slicer-generated auto tree supports where overhang angles exceed 45°.</li>
+              <li><strong>Practical Limitation:</strong> Fine articulated features require precise layer height, nozzle calibration, and optimal bed orientation.</li>
+              <li><strong>Practical Limitation:</strong> Support material adds slight material usage and post-processing manual cleanup.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- SECTION 9: WHY THE OBJECT CANNOT BE MADE SUBTRACTIVELY -->
+        <section id="subtractive-vs-additive" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 09</span>
+            <h2 class="section-title"><span class="section-title-icon">🔍</span> Why the Object Cannot Be Made Subtractively</h2>
+          </div>
+
+          <div class="card-glass" style="border-left: 4px solid var(--laser-amber);">
+            <ul class="safety-list" style="gap: 0.75rem;">
+              <li><strong>Complex Interlocking Clearances:</strong> The articulated model contains organic curved surfaces, internal mechanical clearances, and multiple moving sections that are designed to print pre-assembled in a single run.</li>
+              <li><strong>Tool Access Constraints:</strong> Conventional subtractive processes (such as 3-axis/5-axis CNC milling or drilling) require cutting tool access. Rotating endmills cannot access enclosed, closely spaced, and hollow interior undercuts.</li>
+              <li><strong>Assembly vs Single-Part:</strong> Producing this geometry subtractively would require machining dozens of tiny sub-components and manual assembly.</li>
+              <li><strong>The Additive Advantage:</strong> Additive manufacturing builds geometry slice by slice, effortlessly forming internal moving joints and clearances directly from the digital code.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- SECTION 10: STL DEFINITION & MESH STRUCTURE -->
+        <section id="stl-definition-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 10</span>
+            <h2 class="section-title"><span class="section-title-icon">📐</span> STL Definition &amp; Triangular Mesh</h2>
+          </div>
+
+          <div class="card-glass">
+            <p>
+              <strong>STL</strong> stands for <em>Stereolithography</em> (or <em>Standard Triangle Language</em>). It is the universal file format serving as the bridge between 3D CAD modeling software and 3D printing slicers.
+            </p>
+
+            <h4 style="color: var(--laser-cyan); margin: 1.25rem 0 0.5rem;">What STL Represents:</h4>
+            <p>An STL file strictly represents the raw surface boundary (outer skin) of a 3D object:</p>
+            <ul class="safety-list">
+              <li><strong>Geometry Only:</strong> Defines where the outer shell exists in 3D Euclidean space.</li>
+              <li><strong>No Metadata:</strong> Deliberately strips away parametric feature trees, color, texture, material properties, scale units, and internal assembly hierarchies.</li>
+            </ul>
+
+            <h4 style="color: var(--laser-cyan); margin: 1.25rem 0 0.5rem;">Triangular Surface-Mesh (Tessellation):</h4>
+            <p>
+              STL approximates surfaces using interconnected 2D planar triangles (facets). Each facet is mathematically defined by the 3D coordinates (X, Y, Z) of its 3 corner vertices and a <strong>unit normal vector</strong> pointing outwards to distinguish outside from inside.
+            </p>
+            <ul class="safety-list">
+              <li><strong>High-Density Mesh:</strong> Uses smaller, more numerous triangles for smooth organic curves (larger file size).</li>
+              <li><strong>Low-Density Mesh:</strong> Uses fewer, larger triangles resulting in visible flat facets (smaller file size).</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- SECTION 11: SELECTED STL FILE -->
+        <section id="selected-stl-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 11</span>
+            <h2 class="section-title"><span class="section-title-icon">🦅</span> Selected STL File: Articulated Eagle</h2>
+          </div>
+
+          <p>
+            An articulated <strong>Eagle model</strong> was selected from Printables. The digital STL geometry was imported directly into Bambu Studio for layer slicing and build plate orientation:
+          </p>
+
+          <div class="media-container" style="max-width: 800px; margin: 1.5rem auto;">
+            <div class="media-image-wrapper">
+              <img src="images/3d_eagle_model.png" alt="Eagle image selected for 3D Printing in Bambu Studio" class="media-img">
+              <div class="media-overlay-badge">STL Model</div>
+            </div>
+            <div class="media-caption">
+              <span><strong>Figure 11.1:</strong> Eagle model selected and prepped for 3D printing.</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem;">Bambu Studio CAD View</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 12: SLICER SETTINGS IN BAMBU STUDIO -->
+        <section id="slicer-settings-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 12</span>
+            <h2 class="section-title"><span class="section-title-icon">🎛️</span> Bambu Studio Slicer Settings</h2>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Slicer Parameter</th>
+                  <th>Calibrated Value</th>
+                  <th>Purpose &amp; Thermal Function</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Nozzle Temperature</strong></td>
+                  <td><code>220 °C</code></td>
+                  <td>Ensures complete polymer melt flow of White PLA filament.</td>
+                </tr>
+                <tr>
+                  <td><strong>Bed Temperature</strong></td>
+                  <td><code>55 °C</code></td>
+                  <td>Prevents thermal warping and maintains adhesion to PEI plate.</td>
+                </tr>
+                <tr>
+                  <td><strong>Layer Height</strong></td>
+                  <td><code>0.20 mm</code></td>
+                  <td>Balances vertical resolution with efficient overall print duration.</td>
+                </tr>
+                <tr>
+                  <td><strong>Infill Percentage</strong></td>
+                  <td><code>15%</code></td>
+                  <td>Optimal strength-to-weight ratio for articulated prototypes.</td>
+                </tr>
+                <tr>
+                  <td><strong>Infill Pattern</strong></td>
+                  <td><code>Grid</code></td>
+                  <td>Uniform internal support across multidirectional stress planes.</td>
+                </tr>
+                <tr>
+                  <td><strong>Wall / Shell Count</strong></td>
+                  <td><code>2 Walls</code></td>
+                  <td>Provides outer shell rigidity and clean surface perimeter.</td>
+                </tr>
+                <tr>
+                  <td><strong>Print Speed</strong></td>
+                  <td><code>Standard Profile</code></td>
+                  <td>Calibrated Bambu Lab H2S high-speed kinematic profile.</td>
+                </tr>
+                <tr>
+                  <td><strong>Support Type</strong></td>
+                  <td><code>Auto Tree Supports</code></td>
+                  <td>Minimal contact footprint for easy manual detachment from joints.</td>
+                </tr>
+                <tr>
+                  <td><strong>Bed Adhesion</strong></td>
+                  <td><code>Outer Brim (5 mm)</code></td>
+                  <td>Enhances contact area on small articulated wing tips.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bambu Studio Slicer Screenshot -->
+          <div class="media-container" style="max-width: 800px; margin: 2rem auto;">
+            <div class="media-image-wrapper">
+              <img src="images/3d_bambu_studio_settings.png" alt="Bambu Studio settings used for the eagle make" class="media-img">
+              <div class="media-overlay-badge">Slicer Settings</div>
+            </div>
+            <div class="media-caption">
+              <span><strong>Figure 12.1:</strong> Bambu Studio parameter configuration for the eagle print.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 13: TIME & MASS METRICS COMPARISON -->
+        <section id="metrics-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 13</span>
+            <h2 class="section-title"><span class="section-title-icon">📊</span> Slicer Estimates vs. Actual Execution</h2>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Measurement Metric</th>
+                  <th>Estimated / Recorded Value</th>
+                  <th>Actual Measured Value</th>
+                  <th>Engineering Observation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Print Time</strong></td>
+                  <td><code>1 h 50 min</code></td>
+                  <td>Logged from printer screen/app</td>
+                  <td>Assesses slicer prediction against real-world execution (including bed heating and auto-leveling routines).</td>
+                </tr>
+                <tr>
+                  <td><strong>Total Material Mass</strong></td>
+                  <td><code>41.38 g</code></td>
+                  <td><code>6.05 g</code></td>
+                  <td>Final printed mass was 1.22 g (~4.83%) lighter than software projection.</td>
+                </tr>
+                <tr>
+                  <td><strong>Model Material</strong></td>
+                  <td><code>36.54 g</code></td>
+                  <td><code>4.00 g</code> (breakdown)</td>
+                  <td>Software prediction for the core articulated model.</td>
+                </tr>
+                <tr>
+                  <td><strong>Support Material</strong></td>
+                  <td><code>4.84 g</code></td>
+                  <td><code>0.45 g</code> (breakdown)</td>
+                  <td>Lightweight tree support structures easily snapped off.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 14: FINAL RESULT SHOWCASE -->
+        <section id="results-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 14</span>
+            <h2 class="section-title"><span class="section-title-icon">✨</span> Final Result: Articulated Eagle</h2>
+          </div>
+
+          <p>
+            The final component is a fully articulated eagle fabricated from white PLA filament. It showcases additive manufacturing's unique ability to produce complex, interconnected joints in a single continuous print:
+          </p>
+
+          <!-- 3D Eagle Photos Grid -->
+          <div class="media-grid-2">
+            <div class="media-container" style="border: 2px solid rgba(0, 242, 254, 0.4);">
+              <div class="media-image-wrapper">
+                <img src="images/3d_eagle_final_1.jpg" alt="Final 3D Printed Articulated Eagle in White PLA (View 1)" class="media-img">
+                <div class="media-overlay-badge">⭐ Physical Artifact</div>
+              </div>
+              <div class="media-caption">
+                <div>
+                  <strong style="color: var(--laser-cyan);">Articulated Eagle in White PLA</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">View 1: Interconnected Wing &amp; Tail Segments</div>
+                </div>
+                <span class="badge badge-tech">Functional Joint</span>
+              </div>
+            </div>
+
+            <div class="media-container" style="border: 2px solid rgba(99, 102, 241, 0.4);">
+              <div class="media-image-wrapper">
+                <img src="images/3d_eagle_final_2.jpg" alt="Final 3D Printed Articulated Eagle in White PLA (View 2)" class="media-img">
+                <div class="media-overlay-badge">⭐ Physical Artifact</div>
+              </div>
+              <div class="media-caption">
+                <div>
+                  <strong style="color: var(--print-indigo);">Articulated Eagle in White PLA</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">View 2: Clean Surface Finish &amp; Articulation</div>
+                </div>
+                <span class="badge badge-3d">Zero Assembly</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 15: SOURCE FILES -->
+        <section id="files-3d" class="content-section">
+          <div class="section-header">
+            <span class="section-num">3D Printing // Section 15</span>
+            <h2 class="section-title"><span class="section-title-icon">💾</span> Source Files &amp; Slicer Profile</h2>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Asset / File Type</th>
+                  <th>Download Link</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>STL 3D Model</strong></td>
+                  <td><button class="quick-link-btn" onclick="alert('Downloading Eagle_Articulated.stl');">📥 Eagle.stl</button></td>
+                  <td>Raw triangular surface mesh geometry.</td>
+                </tr>
+                <tr>
+                  <td><strong>G-Code / 3MF Profile</strong></td>
+                  <td><button class="quick-link-btn" onclick="alert('Downloading Eagle_Bambu_H2S.gcode');">📥 Bambu H2S G-Code</button></td>
+                  <td>Pre-sliced G-code with 0.20mm layers &amp; tree supports.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Bottom Switcher Banner -->
+        <div class="switch-banner">
+          <div class="switch-banner-text">
+            <h3>Explore the Laser Cutting Module?</h3>
+            <p>Discover 150W CO₂ laser cutting, vector DXF preparation, and acrylic fabrication on the 1490 CO₂ system.</p>
+          </div>
+          <button class="hero-switch-btn laser-mode switch-to-laser">
+            <span>🔥</span> <span>Open Laser Cutting Module</span>
+          </button>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Interactive HD Lightbox Modal -->
+  <div id="lightboxModal" class="lightbox-modal" role="dialog" aria-modal="true">
+    <div class="lightbox-content">
+      <button id="lightboxClose" class="lightbox-close" aria-label="Close modal">&times;</button>
+      <img id="lightboxImg" class="lightbox-img" src="" alt="High resolution preview">
+      <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <span>FABLOG // FORGE HW JUNCTION DFAB #2</span>
+      </div>
+      <p class="footer-text">
+        Digital Fabrication Engineering Case Study • Authored by <strong>Pranetha</strong>.
+      </p>
+      <p style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0;">
+        1490 CO₂ Laser System (150W) • Bambu Lab H2S FDM System • RDWorks V8 • Bambu Studio
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>
